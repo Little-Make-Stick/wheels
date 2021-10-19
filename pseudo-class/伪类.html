@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .line{
+        }
+        /* .line:first-child {
+            background: #289373;
+        } */
+
+        /* .line:last-child {
+            background: #ff1133;
+        } */
+
+        /* .line:nth-child(n+2) {
+            color: #ccc;
+        } */
+
+        /* .line:empty{
+            height: 16px;
+            background-color: lavender;
+        } */
+
+        /* .line:only-child{
+            text-decoration: underline;
+        } */
+
+        /* .line:not(.line:first-child) {
+            color: lightsalmon;
+        } */
+
+        /* .line:nth-of-type(2n){
+            border: 1px solid lightgray;
+        } */
+
+        /* .line:nth-last-of-type(2n){
+            border-left: 3px solid lightskyblue;
+        } */
+
+        /* .line:first-of-type{
+            text-decoration: line-through;
+        } */
+
+        /* .line:only-of-type{
+            color: lightcoral;
+        } */
+
+        
+
+        /* .line:root{
+            margin: 30px;
+        } */
+
+        /* .item:target{
+            border: lightslategrey;
+            background: #000;
+            color: lightyellow;
+        } */
+
+
+        /* .ui-a a{text-decoration: none;}
+
+        .ui-a a:hover{border-bottom: 1px solid mediumblue;}
+
+        .ui-a a:visited{color: green;}
+
+        .ui-a a:active{color: red;} */
+
+        /* ::selection{
+            background-color: olivedrab;
+        } */
+
+        /* form input:focus{outline-color: red;}
+        form input:enabled{border: 1px solid blue;}
+        form input:disabled{background: #ccc;}
+        form input:checked{outline: 1px solid darkred;} */
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <!-- <div class="list1">
+            <div class="line1">111111111111</div>
+            <div class="line2">222222222222</div>
+        </div>
+        <div class="list2">
+            <div class="line3">333333333333</div>
+            <div class="line4">444444444444</div>
+        </div>
+        <div class="list3">
+            <div class="line5">555555555555</div>
+            <div class="line6">666666666666</div>
+        </div> -->
+        <!-- <div class="_parent">
+            <div class="line">aaa</div>
+            <div class="line">bbb</div>
+            <span class="line">pccc</span>
+            <p class="line">33333</p>
+        </div> -->
+
+        <!-- <div class="artivle">
+            <div class="nav">
+                <a class="item1" href="#item1">item1</a>
+                <a class="item2" href="#item2">item2</a>
+            </div>
+            <div class="content">
+                <div id="item1" class="item">item1111</div>
+                <div id="item2" class="item">item2222</div>
+            </div>
+        </div> -->
+        
+
+        <!-- UI结构伪类 <a> -->
+
+        <!-- <div class="ui-a">
+            <a href="#nav1">item1</a>
+            <a href="#nav2">item2</a>
+            <a href="#nav3">item3</a>
+        </div> -->
+
+        <!-- UI结构伪类 <form> -->
+
+        <!-- <div class="ui-form">
+            <form action="">
+                <input type="text" disabled><br/><br/>
+                <input type="text" ><br/><br/>
+                <input type="checkbox">男<br/>
+            </form>
+        </div> -->
+    </div>
+    <script>
+        let htmlText = "Rules:<br/>1. Enter your email to subscribe us;<br/>2. This FLASH DEALS price we only provide on this page;<br/>3. Other code cannot be used together to buy anything from this page, cause of this is the special price for every customer already;<br/>&gt;&gt;&gt; NEVER MISS ANY DEAL NEWS FROM NOW &gt;&gt;&gt;"
+        let node = document.createElement('div');
+        node.setAttribute('class', 'daily_deals__rules');
+        node.innerHTML = htmlText;
+        // document.querySelector('.line1').append(node)
+        // document.querySelector('#app').appendChild(node)
+        // let existItem = document.querySelector('.line2')
+        // document.querySelector('#app').insertBefore(node,existItem);
+        let existItem = document.querySelector('.list2')
+        let removeItem = document.querySelector('.list3')
+        document.querySelector('#app').insertBefore(removeItem, existItem);
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html{
+            width: 100vw;
+            height: 100vh;
+        }
+        body{
+            margin: 0;
+        }
+        .swiper-content{
+            max-height: 670px;
+            /* overflow: hidden; */
+            animation: swiper 5s ease infinite;
+        }
+        .swiper-slider{
+
+        }
+        .swiper-slider a{
+
+        }
+        .swiper-slider a img{
+            width: 100%;
+        }
+        @keyframes swiper {
+            0% {transform:translateY(0px);}
+            30% {transform:translateY(-680px);}
+            35% {transform:translateY(-680px);}
+            60% {transform:translateY(-1360px);}
+            65% {transform:translateY(-1360px);}
+            90% {transform:translateY(0px);}
+            100% {transform:translateY(0px);}
+        }
+
+    </style>
+</head>
+<body>
+    <!-- col -->
+    <div class="swiper-content">
+        <div class="swiper-slider">
+            <a href="#">
+                <img src="./image/1.png"/>
+            </a>
+        </div>
+        <div class="swiper-slider">
+            <a href="#">
+                <img src="./image/2.png"/>
+            </a>
+        </div>
+        <div class="swiper-slider">
+            <a href="#">
+                <img src="./image/3.jpg"/>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>

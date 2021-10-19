@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* pop-up-phone-mantle */
+        .pop-up-phone-show {
+            display: none;
+        }
+
+        .pop-up-phone-mantle {
+            max-width: 100%;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 10;
+            /* background-color: rgba(204, 204, 204, 0.2); */
+            background-color: rgba(0, 0, 0, 0.4);
+            margin: 0;
+            display: none;
+            /*align-item:center;*/
+        }
+
+        .pop-up-phone {
+            width: 680px;
+            height: 370px;
+            position: relative;
+            left: calc(calc(100% - 680px) / 2);
+            top: calc(calc(100% - 630px) / 2);
+        }
+
+        .pop-up-phone-close {
+            width: 40px;
+            height: 40px;
+            background-image: url('https://cdn.shopifycdn.net/s/files/1/0577/0929/7846/files/btn_close_c3dee733-16a1-44fd-8ec1-b285c0178d91.png?v=1629526420');
+            background-repeat: no-repeat;
+            background-size: 40px 40px;
+            background-position: center center;
+            position: relative;
+            left: 550px;
+            top: 28px;
+        }
+
+        .pop-up-phone-content {
+            width: 680px;
+            height: 400px;
+            background-image: url('https://cdn.shopifycdn.net/s/files/1/0577/0929/7846/files/1_0f1cce51-2eb9-4950-a6c7-4fc2512bb618.png?v=1629526421');
+            background-repeat: no-repeat;
+            background-size: 560px 380px;
+            background-position: center center;
+        }
+
+        .pop-up-phone-mantle .activity-enter-succeed {
+            color: #333333;
+            font-size: 20px;
+            text-align: center;
+            position: relative;
+            top: 90px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* .activity-enter-succeed-title{} */
+        .pop-up-phone-mantle .activity-enter-succeed-icon {
+            width: 27px;
+            height: 27px;
+            background-image: url('https://cdn.shopifycdn.net/s/files/1/0577/0929/7846/files/icon_done_07afac09-5c15-43e6-9905-077e5a558c2d.png?v=1629526420');
+            background-repeat: no-repeat;
+            background-size: 27px 27px;
+            background-position: center center;
+            margin-left: 8px;
+        }
+
+        .pop-up-phone-mantle .activity-context {
+            display: inline-block;
+            color: #FEFEFE;
+            font-size: 19px;
+            position: relative;
+            top: 107px;
+            left: 200px;
+        }
+
+        .pop-up-phone-mantle .activity-date {
+            color: #F6644D;
+            font-size: 14px;
+            text-align: center;
+            position: relative;
+            top: 140px;
+        }
+
+        .pop-up-phone-mantle .activity-tip {
+            color: #333333;
+            font-size: 14px;
+            line-height: 20px;
+            text-align: center;
+            position: relative;
+            top: 150px;
+        }
+    </style>
+    <style>
+        /* pop-up-bag-mantle */
+        .pop-up-bag-show {
+            display: none;
+        }
+
+        .pop-up-bag-mantle {
+            max-width: 100%;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            z-index: 10;
+            /* background-color: rgba(204, 204, 204, 0.2); */
+            background-color: rgba(0, 0, 0, 0.4);
+            margin: 0;
+            display: none;
+            /*align-items: center;*/
+        }
+
+        .pop-up-bag {
+            width: 680px;
+            height: 600px;
+            position: relative;
+            left: calc(calc(100% - 680px) / 2);
+            top: calc(calc(100% - 700px) / 2);
+        }
+
+        .pop-up-bag-close {
+            width: 40px;
+            height: 40px;
+            background-image: url('https://cdn.shopifycdn.net/s/files/1/0577/0929/7846/files/btn_close_c3dee733-16a1-44fd-8ec1-b285c0178d91.png?v=1629526420');
+            background-repeat: no-repeat;
+            background-size: 40px 40px;
+            background-position: center center;
+            position: relative;
+            left: 550px;
+            top: 28px;
+        }
+
+        .pop-up-bag-content {
+            width: 680px;
+            height: 540px;
+            background-image: url('https://cdn.shopifycdn.net/s/files/1/0577/0929/7846/files/2_c45c5dbb-c40d-4c84-a564-9d18d74934db.png?v=1629526420');
+            background-repeat: no-repeat;
+            background-size: 560px 480px;
+            background-position: center center;
+        }
+
+        .pop-up-bag-mantle .activity-enter-succeed {
+            color: #333333;
+            font-size: 20px;
+            text-align: center;
+            position: relative;
+            top: 110px;
+            display: flex;
+            justify-content: center;
+        }
+
+        /* .activity-enter-succeed-title{} */
+        .pop-up-bag-mantle .activity-enter-succeed-icon {
+            width: 27px;
+            height: 27px;
+            background-image: url('https://cdn.shopifycdn.net/s/files/1/0577/0929/7846/files/icon_done_07afac09-5c15-43e6-9905-077e5a558c2d.png?v=1629526420');
+            background-repeat: no-repeat;
+            background-size: 27px 27px;
+            background-position: center center;
+            margin-left: 8px;
+        }
+
+        .pop-up-bag-mantle .activity-discount {
+            display: inline-block;
+            color: #9E6045;
+            position: relative;
+            top: 135px;
+            left: 190px;
+        }
+
+        .pop-up-bag-mantle .activity-discount-off {
+            font-size: 38px;
+            font-weight: bold;
+            position: relative;
+            /* top: 135px; */
+            left: 50px;
+        }
+
+        .pop-up-bag-mantle .activity-extra-discount {
+            font-size: 22px;
+            /* position: relative;
+                    top: 145px;
+                    left: 170px; */
+        }
+
+        .pop-up-bag-mantle .activity-get-discount-button {
+            display: inline-block;
+            color: #FFFFFF;
+            background: linear-gradient(left, #fcb88d, #fd876b);
+            background: -moz-linear-gradient(left, #fcb88d, #fd876b);
+            background: -ms-linear-gradient(left, #fcb88d, #fd876b);
+            background: -o-linear-gradient(left, #fcb88d, #fd876b);
+            background: -webkit-linear-gradient(left, #fcb88d, #fd876b);
+            padding: 10px 25px;
+            border-radius: 20px;
+            font-size: 16px;
+            cursor: pointer;
+            position: relative;
+            top: 200px;
+            left: -70px;
+        }
+
+        .pop-up-bag-mantle .activity-reward {
+            width: 330px;
+            color: #2a2420;
+            font-size: 14px;
+            text-align: left;
+            position: relative;
+            top: 270px;
+            left: 220px;
+        }
+
+        .pop-up-bag-mantle .activity-context {
+            width: 300px;
+            color: #2a2420;
+            font-size: 14px;
+            line-height: 20px;
+            text-align: left;
+            position: relative;
+            top: 270px;
+            left: 220px;
+        }
+
+        .pop-up-bag-mantle .activity-reward p,
+        .activity-context p {
+            display: inline-block;
+            line-height: 14px;
+            margin: 0;
+        }
+    </style>
+    <style>
+        <!--
+        /* get-user-info-page tool.css */
+        .html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            color: #1E2324;
+        }
+
+        .get-user-info-page .small-title {
+            font-size: 32px;
+        }
+
+        .get-user-info-page .middle-title {
+            font-size: 50.82px;
+            font-weight: bold;
+            margin: 40px 0 5px 0;
+        }
+
+        .get-user-info-page .large-title {
+            font-size: 74.55px;
+            font-weight: bolder;
+            margin: 0 0 20px 0;
+        }
+
+        .get-user-info-page .x-small-text {
+            font-size: 12.5px;
+        }
+
+        .get-user-info-page .small-text {
+            font-size: 14px;
+        }
+
+        .get-user-info-page .middle-text {
+            font-size: 16px;
+        }
+
+        .get-user-info-page .large-text {
+            font-size: 18px;
+        }
+
+        .get-user-info-page .x-large-text {
+            font-size: 22px;
+        }
+
+        .get-user-info-page .light-text {
+            color: #FF7515;
+        }
+
+        .get-user-info-page .d-flex {
+            display: flex;
+        }
+
+        .get-user-info-page .flex-col {
+            flex-direction: column;
+        }
+
+        .get-user-info-page .flex-1 {
+            flex: 1;
+        }
+
+        .get-user-info-page .flex-wrap {
+            flex-wrap: wrap;
+        }
+
+        .get-user-info-page .jc-center {
+            justify-content: center;
+        }
+
+        .get-user-info-page .jc-end {
+            justify-content: flex-end;
+        }
+
+        .get-user-info-page .jc-around {
+            justify-content: space-around;
+        }
+
+        .get-user-info-page .jc-between {
+            justify-content: space-between;
+        }
+
+        .get-user-info-page .ai-center {
+            align-items: center;
+        }
+
+        .get-user-info-page .ai-start {
+            align-items: flex-start;
+        }
+        -->
+    </style>
+    <style>
+        <!--
+        /*  get-user-info-page  */
+
+        .get-user-info-page label {
+            height: 30px;
+        }
+
+        .get-user-info-page .lottery-draw-activity-form-item [type="text"],
+        .get-user-info-page .lottery-draw-activity-form-item [type="email"],
+        .get-user-info-page .lottery-draw-activity-form-item select {
+            height: 45px;
+            background: #FFFFFF;
+            border: 1px solid #BFBFBF;
+            border-radius: 4px;
+            padding: auto 10px;
+        }
+
+        .get-user-info-page .lottery-draw-activity-form-item option {
+            line-height: 20px;
+            background-color: #fff;
+            font-size: 16px;
+        }
+
+        .get-user-info-page .lottery-draw-activity-form-item option:hover,
+        .get-user-info-page .lottery-draw-activity-form-item option:focus,
+        .get-user-info-page .lottery-draw-activity-form-item option:focus-within {
+            background-color: #fd876b;
+            color: #fff;
+        }
+
+        .mobile-inline {
+            width: 100%;
+            padding: 0 20px;
+        }
+
+        .get-user-info-page .present-bag-activity-form-item [type="email"] {
+            width: 225px;
+            height: 45px;
+            background: #FFFFFF;
+            border: none;
+            margin-right: 15px;
+            padding: auto 10px;
+        }
+
+        .get-user-info-page [type="button"] {
+            width: 231px;
+            height: 45px;
+            background: linear-gradient(-35deg, #FF7C75, #FFCA6D);
+            border-radius: 4px;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+            font-size: 20px;
+        }
+
+        .get-user-info-page .lottery-draw-activity-form-item input {
+            flex-grow: 1;
+        }
+
+
+        .get-user-info-page {
+            width: 100%;
+        }
+
+        .get-user-info-page-header {
+            height: 499px;
+            min-width: 1146px;
+            background-image: url('https://cdn.shopifycdn.net/s/files/1/0577/0929/7846/files/bg_banner_35398b9b-ec0f-4bc0-aa2d-54a1ac82c54f.jpg?v=1629526420');
+            background-repeat: no-repeat;
+            background-position: top left;
+            background-size: 100% 460px;
+        }
+
+        .registation-title {
+            margin: 20px 0;
+            min-width: 1146px;
+        }
+
+        .registation-content-bg {
+            width: 100%;
+            min-width: 1146px;
+            height: 720px;
+            background-image: url('https://cdn.shopifycdn.net/s/files/1/0577/0929/7846/files/bg1_733022b9-3a03-4bc3-8503-2fd1a3c663db.png?v=1629526420');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 100% 720px;
+        }
+
+        .registation-content {
+            width: 1146px;
+            margin: 20px auto;
+        }
+
+        .get-user-info-page-dashed-icon {
+            width: 4px;
+            height: 62px;
+            margin: 20px;
+            background-image: url('https://cdn.shopifycdn.net/s/files/1/0577/0929/7846/files/image_3j_b7a1a7a9-27a3-4301-aa90-ed2a00960cf6.png?v=1629526420');
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        .gold-medal-module {
+            width: 86px;
+            height: 86px;
+            background-image: url('https://cdn.shopifycdn.net/s/files/1/0577/0929/7846/files/tag_win_1809c198-dcae-491e-a24d-d130edd85552.png?v=1629526420');
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        .present-bag-activity-bg {
+            height: 355px;
+            background-image: url('https://cdn.shopifycdn.net/s/files/1/0577/0929/7846/files/bg_sub_d3836cfa-6579-4adc-a644-0360c598bfe3.png?v=1629526420');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 100% 355px;
+        }
+
+        .warm-tip .warm-tip-icon {
+            width: 38px;
+            height: 38px;
+            background-image: url('https://cdn.shopify.com/s/files/1/0577/0929/7846/files/icon_news_0ce9c9b5-24d9-445c-be12-c5d7c5fccbe9.png?v=1629526420');
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 28px 28px;
+            margin-right: 10px;
+        }
+
+        .gold-medal-reward {
+            width: 100%;
+            height: 100%;
+            padding: calc(calc(86px - 27px) / 2) 0;
+            text-align: center;
+        }
+
+        .lottery-draw-activity-form {
+            margin: 50px 0;
+        }
+
+        .lottery-draw-activity-form-line {
+            margin: 20px 0;
+        }
+
+        .lottery-draw-activity-form-line:first-child input {
+            width: 363px;
+        }
+
+        .lottery-draw-activity-form-line:last-child [type="text"] {
+            width: 464px;
+        }
+
+        .lottery-draw-activity-form-line:last-child select {
+            width: 123px;
+        }
+
+        .warm-tip {
+            margin: 20px 0;
+            padding: 6px 0;
+            background: rgba(191, 191, 191, 0.2);
+            color: #888888;
+            line-height: 18px;
+        }
+
+        .present-bag-activity-form {
+            width: 730px;
+        }
+
+        .present-bag-activity-title,
+        .present-bag-activity-content {
+            margin: 20px 0;
+        }
+        -->
+    </style>
+    <style>
+        <!--
+        .site-page,
+        .page-content {
+            margin-top: 0px;
+        }
+
+        .page-masthead {
+            display: none;
+        }
+
+        .page-content {
+            max-width: 1920px;
+            padding: 0 0;
+        }
+        -->
+    </style>
+    <style>
+        @media screen and (max-width: 1280px) {
+
+            /* get-user-info-page */
+            .get-user-info-page .small-title {
+                font-size: 20px;
+            }
+
+            .get-user-info-page .middle-title {
+                font-size: 24px;
+                margin: 0 0;
+                line-height: 35px;
+            }
+
+            .get-user-info-page .large-title {
+                font-size: 26px;
+                font-weight: bold;
+                margin: 0 0;
+                line-height: 40px;
+            }
+
+            .get-user-info-page .x-small-text {
+                font-size: 8px;
+            }
+
+            .get-user-info-page .small-text {
+                font-size: 10px;
+            }
+
+            .get-user-info-page .middle-text {
+                font-size: 12px;
+            }
+
+            .get-user-info-page .large-text {
+                font-size: 14px;
+            }
+
+            .get-user-info-page .x-large-text {
+                font-size: 16px;
+            }
+
+            /* .get-user-info-page .d-flex{
+                display: block;
+            } */
+            .get-user-info-page label {
+                display: inline;
+            }
+
+            .get-user-info-page {
+                max-width: 1480px;
+                width: 100%;
+            }
+
+            .get-user-info-page-header {
+                width: 100%;
+                min-width: 100%;
+                height: 260px;
+                background-size: 100% 260px;
+                text-align: center;
+            }
+
+            .gold-medal-module {
+                background-size: 70px 70px;
+            }
+
+            .gold-medal-reward {
+                padding: calc((70px - 27px) / 2) 0;
+            }
+
+            .registation-title {
+                width: 100%;
+                min-width: 100%;
+            }
+
+            .registation-content-bg {
+                min-width: 100%;
+            }
+
+            .registation-content {
+                width: 100%;
+            }
+
+            .lottery-draw-activity-form-line {
+                flex-wrap: wrap;
+                margin: 0;
+            }
+
+            .lottery-draw-activity-form-item {
+                width: calc(100% - 20px);
+            }
+
+            .lottery-draw-activity-form-line:first-child input {
+                width: 100%;
+                margin: 3px;
+            }
+
+            .lottery-draw-activity-form-item {
+                margin: 3px;
+            }
+
+            .get-user-info-page .mobile-inline {
+                width: calc(100% - 10px);
+                padding-left: 2px;
+                padding-right: 10px;
+            }
+
+            .lottery-draw-activity-form-line,
+            .lottery-draw-activity-form-line:last-child [type="text"],
+            .lottery-draw-activity-form-line:last-child [type="button"],
+            .get-user-info-page .mobile-inline select {
+                width: 100%;
+            }
+
+            .warm-tip {
+                width: calc(100% - 40px);
+                padding: 0 10px;
+                margin: 0 10px 20px 10px;
+            }
+
+            .present-bag-activity-bg {
+                height: 260px;
+                background-size: 100% 260px;
+                padding: 0 10px;
+                text-align: right;
+            }
+
+            .present-bag-activity-form {
+                width: 100%;
+                max-width: 540px;
+            }
+
+            .present-bag-activity-form-line {
+                /* flex-wrap: wrap; */
+                flex-direction: column;
+                justify-content: flex-end;
+                align-items: flex-end;
+            }
+
+            .get-user-info-page .present-bag-activity-form-item [type="email"] {
+                margin-right: 0px;
+            }
+
+            .present-bag-activity-form-item input {
+                margin: 2px 0;
+            }
+
+            .present-bag-activity-title,
+            .present-bag-activity-content {
+                margin: 5px 0;
+            }
+
+        }
+
+        @media screen and (max-width: 750px) {
+
+            /* pop-up-phone-mantle */
+            .pop-up-phone {
+                width: 350px;
+                height: 300px;
+                left: calc(calc(100% - 330px) / 2);
+                top: calc(calc(100% - 300px) / 2);
+            }
+
+            .pop-up-phone-close {
+                width: 30px;
+                height: 30px;
+                background-size: 30px 30px;
+                left: calc(calc(100% - 330px) / 2 + 300px);
+                top: calc(calc(100% - 300px) / 2);
+            }
+
+            .pop-up-phone-content {
+                width: 350px;
+                height: 300px;
+                background-size: 350px 300px;
+            }
+
+            .pop-up-phone-mantle .activity-enter-succeed {
+                font-size: 16px;
+                top: 60px;
+            }
+
+            .pop-up-phone-mantle .activity-enter-succeed-title {
+                max-width: 220px;
+            }
+
+            /* .activity-enter-succeed-title{} */
+            .pop-up-phone-mantle .activity-enter-succeed-icon {
+                width: 24px;
+                height: 24px;
+                background-size: 24px 24px;
+                margin-left: 8px;
+            }
+
+            .pop-up-phone-mantle .activity-context {
+                font-size: 19px;
+                top: calc(100% - 217px);
+                left: calc(100% - 270px);
+            }
+
+            .pop-up-phone-mantle .activity-date {
+                font-size: 12px;
+                top: calc(100% - 190px);
+            }
+
+            .pop-up-phone-mantle .activity-tip {
+                font-size: 12px;
+                line-height: 20px;
+                top: calc(100% - 190px);
+            }
+
+        }
+
+        @media screen and (max-width: 750px) {
+
+            /* pop-up-bag-mantle */
+            .pop-up-bag {
+                width: 350px;
+                height: 360px;
+                left: calc(calc(100% - 350px) / 2);
+                top: calc(calc(100% - 360px) / 2);
+            }
+
+            .pop-up-bag-close {
+                width: 30px;
+                height: 30px;
+                background-size: 30px 30px;
+                left: calc(calc(100% - 330px) / 2 + 300px);
+                top: calc(calc(100% - 360px) / 2);
+            }
+
+            .pop-up-bag-content {
+                width: 350px;
+                height: 360px;
+                background-size: 350px 360px;
+            }
+
+            .pop-up-bag-mantle .activity-enter-succeed {
+                font-size: 16px;
+                top: calc(100% - 305px);
+            }
+
+            /* .activity-enter-succeed-title{} */
+            .pop-up-bag-mantle .activity-enter-succeed-icon {
+                width: 25px;
+                height: 25px;
+                background-size: 25px 25px;
+                margin-left: 8px;
+            }
+
+            .pop-up-bag-mantle .activity-discount {
+                top: calc(100% - 280px);
+                left: calc(100% - 260px);
+            }
+
+            .pop-up-bag-mantle .activity-discount-off {
+                font-size: 27px;
+                line-height: 35px;
+                left: calc(100% - 150px);
+            }
+
+            .pop-up-bag-mantle .activity-extra-discount {
+                font-size: 14px;
+                line-height: 22px;
+            }
+
+            .pop-up-bag-mantle .activity-get-discount-button {
+                font-size: 14px;
+                top: calc(100% - 220px);
+                left: calc(100% - 440px);
+            }
+
+            .pop-up-bag-mantle .activity-reward {
+                width: 230px;
+                font-size: 8px;
+                top: calc(100% - 170px);
+                left: calc(100% - 275px);
+            }
+
+            .pop-up-bag-mantle .activity-context {
+                width: 200px;
+                font-size: 8px;
+                line-height: 20px;
+                top: calc(100% - 170px);
+                left: calc(100% - 275px);
+            }
+
+            .pop-up-bag-mantle .activity-reward p,
+            .activity-context p {
+                line-height: 14px;
+                margin: 0;
+            }
+        }
+
+        @media screen and (min-width: 750px) {
+            /* pop-up-phone-mantle */
+            .pop-up-phone-mantle .activity-context {
+                top: calc(100% - 270px);
+                line-height: 25px;
+            }
+
+            .pop-up-phone-mantle .activity-date {
+                top: calc(100% - 230px);
+            }
+
+            .pop-up-phone-mantle .activity-tip {
+                top: calc(100% - 220px);
+            }
+
+        }
+
+        @media screen and (min-width: 750px) {
+
+            /* pop-up-bag-mantle */
+            .pop-up-bag-mantle .activity-discount-off {
+                line-height: 55px;
+            }
+
+            .pop-up-bag-mantle .activity-extra-discount {
+                line-height: 35px;
+            }
+
+            .pop-up-bag-mantle .activity-get-discount-button {
+                left: calc(100% - 720px);
+                top: calc(100% - 320px);
+            }
+
+            .pop-up-bag-mantle .activity-reward {
+                top: calc(100% - 250px);
+            }
+
+            .pop-up-bag-mantle .activity-context {
+                top: calc(100% - 245px);
+            }
+
+            .pop-up-bag-mantle .activity-reward p,
+            .activity-context p {
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- get-user-info-page -->
+    <div class="get-user-info-page">
+        <!-- pop-up-phone-mantle -->
+        <div class="pop-up-phone-mantle">
+            <div class="pop-up-phone">
+                <div class="pop-up-phone-close"></div>
+                <div class="pop-up-phone-content">
+                    <div class="activity-enter-succeed">
+                        <div class="activity-enter-succeed-title">Successfully done the registration</div>
+                        <div class="activity-enter-succeed-icon"></div>
+                    </div>
+                    <div class="activity-context">You have got <br> the chance to get <br> FREE iPhone <br> RIGHT NOW!
+                    </div>
+                    <div class="activity-date">Draw time :July 30th 2021,</div>
+                    <div class="activity-tip">the draw information will be sent to you by email.</div>
+                </div>
+            </div>
+        </div>
+        <!-- pop-up-bag-mantle  -->
+        <div class="pop-up-bag-mantle">
+            <div class="pop-up-bag">
+                <div class="pop-up-bag-close"></div>
+                <div class="pop-up-bag-content">
+                    <div class="activity-enter-succeed">
+                        <div class="activity-enter-succeed-title">Successfully done the registration</div>
+                        <div class="activity-enter-succeed-icon"></div>
+                    </div>
+                    <div class="activity-discount">
+                        <div class="activity-discount-off">25% OFF</div>
+                        <div class="activity-extra-discount">FREE SHIPPING Over $23.99</div>
+                    </div>
+                    <div class="activity-get-discount-button">GET CODE NOW &gt;</div>
+                    <div class="activity-reward">
+                        <p>FREE BAGS will post to you and your friends</p>
+                        <br>
+                        <p>after they finish the simple steps of registration.</p>
+                    </div>
+                    <div class="activity-context">
+                        <p>Activation email has been sent to your</p>
+                        <br>
+                        <p>friends' e-mail address.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="get-user-info-page-header  d-flex flex-col ai-center">
+            <div class="middle-title">Get A Chance to</div>
+            <div class="large-title">Win Free iPhone</div>
+            <div class="x-large-text">By Fulminare Store</div>
+            <div class="large-text light-text d-flex flex-col ai-center">
+                <div>Registration by simple steps,</div>
+                <div>and you will get a chance to win the iPhone!</div>
+            </div>
+            <div class="get-user-info-page-dashed-icon"></div>
+            <div class="gold-medal-module">
+                <div class="gold-medal-reward x-small-text">WIN FREE iPhone</div>
+            </div>
+        </div>
+        <div class="registation-title small-title d-flex jc-center">Online Registration</div>
+        <div class="registation-content-bg">
+            <div class="registation-content">
+                <div class="lottery-draw-activity-form middle-text">
+                    <div class="lottery-draw-activity-form-line d-flex jc-between">
+                        <div class="lottery-draw-activity-form-item d-flex flex-col ai-start">
+                            <label for="First Name" class="lottery-draw-activity-form-label">First Name</label> <input
+                                type="text">
+                        </div>
+                        <div class="lottery-draw-activity-form-item d-flex flex-col ai-start">
+                            <label for="Last Name" class="lottery-draw-activity-form-label">Last Name</label> <input
+                                type="text">
+                        </div>
+                        <div class="lottery-draw-activity-form-item d-flex flex-col ai-start">
+                            <label for="Email Address" class="lottery-draw-activity-form-label">Email Address</label>
+                            <input type="email">
+                        </div>
+                    </div>
+                    <div class="lottery-draw-activity-form-line d-flex jc-between">
+                        <div class="lottery-draw-activity-form-item d-flex flex-col ai-start">
+                            <label for="Address" class="lottery-draw-activity-form-label">Address</label> <input
+                                type="text">
+                        </div>
+                        <div class="mobile-inline d-flex ai-center jc-between">
+                            <div class="lottery-draw-activity-form-item d-flex flex-col ai-start">
+                                <label for="Date of Birth" class="lottery-draw-activity-form-label">Date of
+                                    Birth</label>
+                                <select class="months-select" name="month">
+                                    <option value="default">Month</option>
+                                </select>
+                            </div>
+                            <div class="lottery-draw-activity-form-item d-flex flex-col ai-start">
+                                <label for="Date of Birth" class="lottery-draw-activity-form-label"></label>
+                                <select class="days-select" name="day">
+                                    <option value="default">Day</option>
+                                </select>
+                            </div>
+                            <div class="lottery-draw-activity-form-item d-flex flex-col ai-start">
+                                <label for="Date of Birth" class="lottery-draw-activity-form-label"></label>
+                                <select class="years-select" name="year">
+                                    <option value="default">Year</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="lottery-draw-activity-form-item d-flex flex-col ai-start">
+                            <label for="Email Address" class="lottery-draw-activity-form-label"></label> <input
+                                type="button" class="lottery-draw-btn" value="Submit">
+                        </div>
+                    </div>
+                </div>
+                <div class="warm-tip d-flex jc-center">
+                    <div class="warm-tip-icon"></div>
+                    <div class="warm-tip-context small-text">Draw time :July 30th 2021, the draw information will be
+                        sent to you by email.<br> Please make sure that your email address is correct and the actual
+                        harvest address is correct.</div>
+                </div>
+                <div class="present-bag-activity-bg d-flex jc-end ai-center">
+                    <div class="present-bag-activity-form">
+                        <div class="present-bag-activity-title small-title">SIGN UP FOR FREE BAGS</div>
+                        <div class="present-bag-activity-content large-text">AND INVITE ONLY 2 OF YOUR FRIENDS JOIN THE
+                            EVENT, <br> YOU COULD 100% RECEIVE OUR FREE GIFT!</div>
+                        <div class="present-bag-activity-form-line d-flex">
+                            <div class="present-bag-activity-form-item"><input type="email" class="small-text"
+                                    placeholder="Enter your friend1  email here"></div>
+                            <div class="present-bag-activity-form-item"><input type="email" class="small-text"
+                                    placeholder="Enter your friend2  email here"></div>
+                            <div class="present-bag-activity-form-item"><input type="button" class="present-bag-btn"
+                                    value="Invite Now"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>// <![CDATA[
+        /* 
+        能被4整除且不能被100整除的为闰年。如2004年就是闰年，1900年不是闰年。
+        世纪年能被400整除的是闰年，如2000年是闰年，1900年不是闰年。 
+        */
+        function isLeapYear(year) {
+            if (year % 400 == 0) return true;
+            else if (year % 4 == 0 && year % 100 != 0) return true;
+            return false;
+        }
+        /* select add option :(select,start,end) */
+        function selectAddOption(_select, start, end) {
+            for (let item = start; item <= end; item++) {
+                let _option = document.createElement("option");
+                _option.text = item;
+                _option.value = item;
+                _select.add(_option);
+            }
+        }
+
+        function reSetDaysSelect(_select, start, end, days_in_month) {
+            for (let item = end; item >= start; item--) {
+                _select.remove(item);
+            }
+            selectAddOption(_select, 1, days_in_month);
+        }
+
+        function initYearsSelect() {
+            let years = document.querySelector('.years-select');
+            let now_y = new Date().getFullYear();
+            /* console.log(new Date().getFullYear()) */
+
+            selectAddOption(years, 1970, now_y);
+        }
+
+        function initMonthsSelect() {
+            let months = document.querySelector('.months-select');
+            /* let now_m = new Date().getMonth() + 1;
+            console.log(new Date().getMonth() + 1) */
+            const NUM_OF_MONTHS = 12;
+
+            selectAddOption(months, 1, NUM_OF_MONTHS);
+        }
+
+        function initDaysSelect() {
+            let years = document.querySelector('.years-select');
+            let months = document.querySelector('.months-select');
+            let days = document.querySelector('.days-select');
+
+            let y_select = years.options[years.selectedIndex].value;
+            let m_select = months.options[months.selectedIndex].value;
+            /* console.log(months.value)
+            console.log(months.options[months.selectedIndex].value) */
+            let days_in_month = 31;
+
+            if (m_select == '2') {
+                if (isLeapYear(y_select)) days_in_month = 29;
+                else days_in_month = 28;
+            } else if (m_select == '4' || m_select == '6' || m_select == '9' || m_select == '11') {
+                days_in_month = 30;
+            }
+
+            /* console.log(days.options.length); */
+            if (days.options.length > 1) {
+                reSetDaysSelect(days, 1, days.options.length, days_in_month)
+            } else {
+                selectAddOption(days, 1, days_in_month);
+            }
+        }
+
+        document.querySelector('.years-select').addEventListener('change', initDaysSelect);
+        document.querySelector('.months-select').addEventListener('change', initDaysSelect);
+        (function () { initYearsSelect(); initMonthsSelect(); initDaysSelect(); })()
+
+// ]]></script>
+    <script>// <![CDATA[
+        /* 滚动条距顶部距离 */
+        function getScroll() {
+            if (window.pageXOffset) {
+                return {//主流浏览器 ie9及以上
+                    x: window.pageXOffset,
+                    y: window.pageYOffset
+                }
+            } else { //ie8及以下
+                return {
+                    x: document.documentElement.scrollLeft,
+                    y: document.documentElement.scrollTop
+                }
+            }
+        }
+        document.querySelector('.lottery-draw-btn').addEventListener('click', showLotteryDrawPopUp);
+        function showLotteryDrawPopUp() {
+            /* document.querySelector('.pop-up-phone-mantle').style.top = getScroll().y -200 + 'px'; */
+            document.querySelector('.pop-up-phone-mantle').style.top = getScroll().y + 'px';
+            document.querySelector('.pop-up-phone-mantle').style.display = "block";
+        }
+        document.querySelector('.present-bag-btn').addEventListener('click', showPresentBagPopUp);
+        function showPresentBagPopUp() {
+            /* document.querySelector('.pop-up-bag-mantle').style.top = getScroll().y - 200 + 'px'; */
+            document.querySelector('.pop-up-bag-mantle').style.top = getScroll().y + 'px';
+            document.querySelector('.pop-up-bag-mantle').style.display = "block";
+        }
+        document.querySelector('.pop-up-phone-close').addEventListener('click', closeLotteryDrawPopUp);
+        function closeLotteryDrawPopUp() {
+            document.querySelector('.pop-up-phone-mantle').style.display = "none";
+        }
+        document.querySelector('.pop-up-bag-close').addEventListener('click', closePresentBagPopUp);
+        function closePresentBagPopUp() {
+            document.querySelector('.pop-up-bag-mantle').style.display = "none";
+        }
+
+
+// ]]></script>
+</body>
+
+</html>

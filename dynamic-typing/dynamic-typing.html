@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background: navajowhite;
+            background-size: cover;
+            font-family: 'Trebuchet MS', sans-serif;
+        }
+
+        .container {
+            display: inline-block;
+        }
+
+        /* 通過使用 CSSsteps()函數逐步將寬度從 0 更改為 100% 來顯示我們的文本元素。 */
+        @keyframes typing {
+            from {
+                width: 0
+            }
+
+            to {
+                width: 100%
+            }
+        }
+
+        @keyframes blink {
+            from {
+                border-color: transparent
+            }
+
+            to {
+                border-color: orange;
+            }
+        }
+        /* 
+            ---"overflow: hidden;"和 a "width: 0;", 以確保在打字效果開始之前不會顯示文本內容。
+            ---"border-right: .15em solid orange;", 創建打字機光標。
+            ---將其動畫方向設置forwards為 以確保文本元素width: 0在動畫完成後不會返回
+            ---使用 CSSsteps()函數將動畫分成 N 個步驟
+            ---更改光标颜色以添加重复的闪烁动画增强打字效果
+         */
+        .typed-out {
+            overflow: hidden;
+            border-right: .15em solid orange;
+            white-space: nowrap;
+            font-size: 1.6rem;
+            width: 0;
+            /* animation: typing 1s forwards; */
+
+            animation: typing 2s steps(20, end) forwards,blink .8s infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="typed-out">Web Developer</div>
+    </div>
+</body>
+
+</html>

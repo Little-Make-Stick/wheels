@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 替换失败 */
+        /* 直接更改图片，失败，**样式没应用到iframe** */
+        /* .left-bg{
+            background-image: url('https://img2.baidu.com/it/u=1070003001,653753576&fm=26&fmt=auto&gp=0.jpg') !important;
+        } */
+
+        /* 替换失败 */
+        /* 隐藏原先元素，引用伪元素，**隐藏样式没应用到 ** */
+        /* .content:before{
+            content: '';
+            width: 600px !important;
+            height: 720px !important;
+            background-image: url('https://img2.baidu.com/it/u=1070003001,653753576&fm=26&fmt=auto&gp=0.jpg') !important;
+            background-size: 600px 700px !important;
+            background-repeat: no-repeat !important;
+            background-position: center center !important;
+        }
+        .left-bg{
+            display: none;
+        } */
+
+
+        /* 替换失败 */
+        /* 隐藏原先元素，引用伪元素，**隐藏样式没应用到 ** */
+        /* .content:before{
+            content: '';  
+            width: 600px !important;
+            height: 720px !important;
+            background-image: url('https://img2.baidu.com/it/u=1070003001,653753576&fm=26&fmt=auto&gp=0.jpg') !important;
+            background-size: 600px 700px !important;
+            background-repeat: no-repeat !important;
+            background-position: center center !important;
+        }
+        .left-bg{
+            visibility: hidden;
+            position: absolute;
+        } */
+    </style>
+    <link id="iframe_css" href="./index.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+    <script>
+        // 替换失败
+        // 引入样式表失败
+        // document.write('<link id="iframe_css" href="./index.css" type="text/css" rel="stylesheet"/>');
+
+        // 替换失败
+        // 引入样式表失败
+        // window.onload = function () {
+        //     new_element = document.createElement('link');
+        //     new_element.setAttribute('rel', 'stylesheet');
+        //     new_element.setAttribute('href', './index.css');
+        //     document.body.appendChild(new_element);
+        // }
+    </script>
+    <iframe name="aa" id="0" src="./_iframe.html" width="100%" height="950px" scrolling="no" marginheight="0px"
+        marginwidth="0px" frameborder="0"></iframe>
+    <script>
+        window.onload = function () {
+
+            // document.frames[i].document.getElementById('元素的ID');
+            // document.frames：undefined
+            // new_element = document.createElement('link');
+            // new_element.setAttribute('rel', 'stylesheet');
+            // new_element.setAttribute('href', './index.css');
+            // document.frames[0].document.head.appendChild(new_element);
+            // console.log(document.frames)  /*undefined*/
+
+            // document.frames['iframe的name'].document.getElementById('元素的ID');
+            // document.frames：undefined
+            // new_element = document.createElement('link');
+            // new_element.setAttribute('rel', 'stylesheet');
+            // new_element.setAttribute('href', './index.css');
+            // document.frames['aa'].document.head.appendChild(new_element);
+
+
+            // 取不到‘ .left-bg 元素
+            // let intervalId = null;
+            // intervalId = setInterval(function () {
+            //     console.log('11')
+            //     if (document.querySelector('.left-bg')) {
+            //         console.log('22')
+            //         clearInterval(intervalId)
+            //     }
+            // }, 500)
+
+            // 跨域
+            // let fr = document.querySelector('iframe');
+            // console.log(fr);
+            // new_element = document.createElement('link');
+            // new_element.setAttribute('rel', 'stylesheet');
+            // new_element.setAttribute('href', './index.css');
+            // // index.html:102 Uncaught DOMException: Blocked a frame with origin "null" from accessing a cross-origin frame.
+            // fr.contentWindow.document.head.appendChild(new_element);
+
+        }
+    </script>
+</body>
+
+</html>

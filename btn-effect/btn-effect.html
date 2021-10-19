@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .app {
+            background-color: #000;
+            padding: 20px;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn {
+            width: 80px;
+            /* height: 30px; */
+            height: 80px;
+            /* border-radius: 8px; */
+            border-radius: 50%;
+            color: #fff;
+            background-color: steelblue;
+            margin: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .btn-text{
+            text-align: center;
+            line-height: 30px;
+        }
+
+        /* @keyframes btnAnimate {
+            from {
+                transform: rotate(0deg);
+                border: 4px solid rgba(255,255,255,0.3);
+                width: 82px;
+                height: 82px;
+                border-radius: 50%;
+                background: radial-gradient(rgba(255,255,255,0) 0%,rgba(255,255,255,.1) 20%, rgba(255,255,255,.3) 30%,rgba(255,255,255,.65) 50%, rgba(255,255,255,.55) 70%, rgba(255,255,255,.6) 80%, rgba(255,255,255,1) 95%,rgba(255,255,255,0.3) 100%);
+            }
+
+            to {
+                transform: rotate(360deg);
+                border: 1px solid rgba(255,255,255,0);
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+            }
+        } */
+        /* @keyframes btnAnimate {
+            0% {
+                border: 4px solid rgba(255,255,255,0.3);
+                width: 82px;
+                height: 82px;
+                background: radial-gradient(rgba(255,255,255,0) 0%,rgba(255,255,255,.1) 20%, rgba(255,255,255,.3) 30%,rgba(255,255,255,.65) 50%, rgba(255,255,255,.55) 70%, rgba(255,255,255,.6) 80%, rgba(255,255,255,1) 95%,rgba(255,255,255,0.3) 100%);
+            }
+            20% {
+                background: radial-gradient(rgba(255,255,255,0) 0%,rgba(255,255,255,.1) 40%, rgba(255,255,255,.3) 50%,rgba(255,255,255,.65) 70%, rgba(255,255,255,.55) 80%, rgba(255,255,255,.6) 85%, rgba(255,255,255,1) 90%,rgba(255,255,255,0.3) 100%);
+            }
+            40% {
+                background: radial-gradient(rgba(255,255,255,0) 0%,rgba(255,255,255,.1) 60%, rgba(255,255,255,.3) 70%,rgba(255,255,255,.65) 80%, rgba(255,255,255,.55) 85%, rgba(255,255,255,.6) 87%, rgba(255,255,255,1) 92%,rgba(255,255,255,0.3) 100%);
+            }
+            60% {
+                background: radial-gradient(rgba(255,255,255,0) 0%,rgba(255,255,255,.1) 80%, rgba(255,255,255,.3) 82%,rgba(255,255,255,.65) 88%, rgba(255,255,255,.55) 90%, rgba(255,255,255,.6) 95%, rgba(255,255,255,1) 97%,rgba(255,255,255,0.3) 100%);
+            }
+            80% {
+                background: radial-gradient(rgba(255,255,255,0) 0%,rgba(255,255,255,.1) 100%);
+            }
+
+            100% {
+                border: 1px solid rgba(255,255,255,0);
+                width: 100px;
+                height: 100px;
+            }
+        } */
+         @keyframes btnAnimate {
+            0% {
+                border: 4px solid rgba(255,255,255,0.3);
+                width: 80px;
+                height: 80px;
+                background: radial-gradient(rgba(255,255,255,.8) 0%, rgba(255,255,255,.2) 2%, rgba(255,255,255,0.1) 100%);
+            }
+            10% {background: radial-gradient(rgba(255,255,255,0) 0%, rgba(255,255,255,.1) 8%, rgba(255,255,255,.8) 10%, rgba(255,255,255,.2) 12%, rgba(255,255,255,0.1) 100%)}
+            20% {background: radial-gradient(rgba(255,255,255,0) 0%,rgba(255,255,255,.1) 20%, rgba(255,255,255,.8) 22%,rgba(255,255,255,.2) 24%, rgba(255,255,255,.1) 100%);}
+            30% {background: radial-gradient(rgba(255,255,255,0) 0%,rgba(255,255,255,.1) 30%, rgba(255,255,255,.8) 32%,rgba(255,255,255,.2) 34%, rgba(255,255,255,.1) 100%);}
+            40% {background: radial-gradient(rgba(255,255,255,0) 0%,rgba(255,255,255,.1) 40%, rgba(255,255,255,.8) 42%,rgba(255,255,255,.2) 44%, rgba(255,255,255,.1) 100%);}
+            50% {background: radial-gradient(rgba(255,255,255,0) 0%,rgba(255,255,255,.1) 50%, rgba(255,255,255,.8) 52%,rgba(255,255,255,.2) 54%, rgba(255,255,255,.1) 100%);}
+            60% {background: radial-gradient(rgba(255,255,255,0) 0%,rgba(255,255,255,.1) 60%, rgba(255,255,255,.8) 62%,rgba(255,255,255,.2) 64%, rgba(255,255,255,.1) 100%);}
+            70% {background: radial-gradient(rgba(255,255,255,0) 0%,rgba(255,255,255,.1) 70%, rgba(255,255,255,.8) 72%,rgba(255,255,255,.2) 74%, rgba(255,255,255,.1) 100%);}
+            80% {background: radial-gradient(rgba(255,255,255,0) 0%,rgba(255,255,255,.1) 80%, rgba(255,255,255,.8) 82%,rgba(255,255,255,.2) 84%, rgba(255,255,255,.1) 100%);}
+            90% {background: radial-gradient(rgba(255,255,255,0) 0%,rgba(255,255,255,.1) 90%, rgba(255,255,255,.8) 92%,rgba(255,255,255,.2) 94%, rgba(255,255,255,.1) 100%);}
+            100% {
+                border: 1px solid rgba(255,255,255,0);
+                width: 120px;
+                height: 120px;
+            }
+        } 
+
+        .btn:hover:before {
+            content: '';
+            position: absolute;
+            width: 80px;
+            /* height: 30px; */
+            height: 80px;
+            /* border-radius: 10px; */
+            border-radius: 50%;
+            animation: btnAnimate 1s linear;
+            transition: all 0.3s linear;
+        }
+        @keyframes btnSizeAnimate {
+            from{width: 80px;height: 80px;}
+            to{width: 85px;height: 85px;}
+        }
+        @keyframes btnPositionAnimate {
+            from{top:0px;}
+            to{top: -3px;}
+        }
+        .btn:hover{
+            /* animation: btnSizeAnimate 0.7s linear; */
+            /* transition: all 0.3s linear; */
+            animation: btnPositionAnimate 0.6s linear;
+            transition: all 0.8s linear;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <div class="btn">
+            <div class="btn-text">btn</div>
+        </div>
+    </div>
+</body>
+
+</html>

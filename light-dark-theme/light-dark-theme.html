@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        :root {
+            --header-color: #fff;
+            --main-bg-color: rgba(255, 255, 255, .6);
+            --main-text-color: #000;
+        }
+
+        .theme-color-btn {
+            position: fixed;
+            bottom: 5px;
+            right: 5px;
+            width: 80px;
+            height: 80px;
+            background: var(--main-text-color);
+            color: var(--main-bg-color);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .app {
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.cnblogs.com/cnblogs_com/blogs/700930/galleries/2033117/o_2109180842296.jpg');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: top left;
+        }
+
+        header {
+            height: 30vh;
+            color: var(--header-color);
+        }
+
+        article {
+            height: 100vh;
+            background-color: var(--main-bg-color);
+            color: var(--main-text-color);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <header>
+            <div class="logo">
+                <h1>Logo</h1>
+            </div>
+
+            
+        </header>
+        <article>
+            <div class="section">viudgheoivjhijhvoejvoihjihuivbhrivbheihirhbuihbuihbiuhbu fhbreihjoiJHaopwgiuhi</div>
+            <div class="section">viudgheoivjhijhvoejvoihjihuivbhrivbheihirhbuihbuihbiuhbu fhbreihjoiJHaopwgiuhi</div>
+            <div class="section">viudgheoivjhijhvoejvoihjihuivbhrivbheihirhbuihbuihbiuhbu fhbreihjoiJHaopwgiuhi</div>
+            <div class="section">viudgheoivjhijhvoejvoihjihuivbhrivbheihirhbuihbuihbiuhbu fhbreihjoiJHaopwgiuhi</div>
+            <div class="section">viudgheoivjhijhvoejvoihjihuivbhrivbheihirhbuihbuihbiuhbu fhbreihjoiJHaopwgiuhi</div>
+            <div class="section">viudgheoivjhijhvoejvoihjihuivbhrivbheihirhbuihbuihbiuhbu fhbreihjoiJHaopwgiuhi</div>
+            <div class="section">viudgheoivjhijhvoejvoihjihuivbhrivbheihirhbuihbuihbiuhbu fhbreihjoiJHaopwgiuhi</div>
+            <div class="section">viudgheoivjhijhvoejvoihjihuivbhrivbheihirhbuihbuihbiuhbu fhbreihjoiJHaopwgiuhi</div>
+            <div class="section">viudgheoivjhijhvoejvoihjihuivbhrivbheihirhbuihbuihbiuhbu fhbreihjoiJHaopwgiuhi</div>
+            <div class="section">viudgheoivjhijhvoejvoihjihuivbhrivbheihirhbuihbuihbiuhbu fhbreihjoiJHaopwgiuhi</div>
+            <div class="section">viudgheoivjhijhvoejvoihjihuivbhrivbheihirhbuihbuihbiuhbu fhbreihjoiJHaopwgiuhi</div>
+
+            <div class="btn-list">
+                <div class="theme-color-btn">theme</div>
+            </div>
+        </article>
+    </div>
+    <script>
+        const htmlStyle = document.body.style;
+        window.onload = function () {
+            htmlStyle.setProperty('--theme', 'light');
+            console.log(htmlStyle.getPropertyValue("--theme").trim());
+        }
+        document.querySelector('.theme-color-btn').addEventListener('click',()=>{
+            
+            if(htmlStyle.getPropertyValue("--theme").trim() == 'dark'){
+                htmlStyle.setProperty('--theme', 'light');
+                htmlStyle.setProperty('--header-color', '#fff');
+                htmlStyle.setProperty('--main-bg-color', 'rgba(255,255,255,.6)');
+                htmlStyle.setProperty('--main-text-color', '#000');
+            }else{
+                htmlStyle.setProperty('--theme', 'dark');
+                htmlStyle.setProperty('--header-color', '#000');
+                htmlStyle.setProperty('--main-bg-color', 'rgba(0,0,0,.6)');
+                htmlStyle.setProperty('--main-text-color', '#fff');
+            }
+        })
+
+    </script>
+</body>
+
+</html>

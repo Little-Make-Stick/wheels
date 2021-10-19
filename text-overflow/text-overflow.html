@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .app {
+            width: 300px;
+            height: 100vh;
+            background-color: lightslategray;
+            color: #fff;
+            line-height: 25px;
+            padding: 5px;
+            position: relative;
+        }
+
+        .line {
+            overflow: hidden;
+            /* 隐藏超出部分 */
+            white-space: nowrap;
+            /* 超出的文本保持在一行 */
+            text-overflow: ellipsis;
+            /* 截断文本处显示省略号 */
+        }
+
+        /* 适用于WebKit浏览器及移动端 */
+        .muti-lines {
+            display: -webkit-box;
+            /* 将对象作为弹性伸缩盒子模型显示 */
+            -webkit-box-orient: vertical;
+            /* 设置或检索伸缩盒对象的子元素的排列方式 */
+            -webkit-line-clamp: 2;
+            /* 限制在一个块元素显示的文本的行数 */
+            overflow: hidden;
+        }
+
+        .muti-lines-no-webkit {
+            display: -webkit-box;
+            /* 将对象作为弹性伸缩盒子模型显示 */
+            overflow: hidden;
+            height: 50px;
+            position: relative;
+        }
+
+        .muti-lines-no-webkit:after {
+            content: "...";
+            position: absolute;
+            bottom: 0;
+            right: 40px;
+            padding-left: 40px;
+            background: -webkit-linear-gradient(left, transparent 0%, lightslategray 65%);
+            background: -o-linear-gradient(right, transparent 0%, lightslategray 65%);
+            background: -moz-linear-gradient(right, transparent 0%, lightslategray 65%);
+            background: linear-gradient(to right, transparent 0%, lightslategray 65%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <div class="line">我是宇宙无敌世界第一国服超前省级一霸市里一帅村里鬼才家里最可爱的~lemonwater~</div><br />
+        <div class="line-en line">
+            I am [invincible in the universe] [World first] [Top in the national ranking] [Provincial tyrant] [A
+            handsome man in the city]
+            [Ghost talent in the village] [The most lovely family]~ lemonwater~
+        </div><br />
+        <div class="muti-lines">我是宇宙无敌世界第一国服超前省级一霸市里一帅村里鬼才家里最可爱的~lemonwater~</div><br />
+        <div class="muti-line-en muti-lines">
+            I am [invincible in the universe] [World first] [Top in the national ranking] [Provincial tyrant] [A
+            handsome man in the city]
+            [Ghost talent in the village] [The most lovely family]~ lemonwater~
+        </div><br />
+        <div class="muti-lines-no-webkit">
+            我是宇宙无敌世界第一国服超前省级一霸市里一帅村里鬼才家里最可爱的~lemonwater~
+        </div><br />
+        <div class="muti-line-en muti-lines-no-webkit">
+            I am [invincible in the universe] [World first] [Top in the national ranking] [Provincial tyrant] [A
+            handsome man in the city]
+            [Ghost talent in the village] [The most lovely family]~ lemonwater~
+        </div>
+    </div>
+</body>
+
+</html>

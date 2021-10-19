@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            height: 100vh;
+            width: 100vw;
+        }
+
+        body {
+            height: 100vh;
+            width: 100vw;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .form {
+            width: 60vw;
+            border: 2px solid #000;
+            border-radius: 8px;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form * {
+            width: 100%;
+            margin: 15px;
+            font-size: 22px;
+            height: 30px;
+        }
+
+        @keyframes blink {
+            from{
+                border-left: 2px solid transparent;
+            }
+            to{
+                border-left: 2px solid #ddd;
+            }
+        }
+
+        .PIN-input {
+            margin-bottom: 0;
+        }
+
+        .PIN-input:focus{
+            animation: blink .8s infinite;
+        }
+
+        .form .line {
+            border-bottom: 2px solid #ccc;
+            height: 0;
+            margin-top: 0;
+        }
+
+        .PIN-btn,.cancel-btn {
+            height: 35px;
+            border: 1px solid #ff7515;
+            background-color: #ff7515;
+            color: #fff;
+            transition: all 1s ease;
+        }
+
+        /* 用focus加上disable的特效，在光标落到别的地方时特效随之移除 */
+        /* .PIN-btn:focus {
+            color: #fff;
+            background-color: #ddd;
+            border: none;
+            pointer-events: none;
+        } */
+
+        .disabled{
+            color: #fff;
+            background-color: #ddd;
+            border: none;
+            /* pointer-events: none;
+               意思就是让鼠标事件失效（链接、点击等事件）。
+            */
+            pointer-events: none;
+        }
+
+        .cancel-btn{
+            color: #ff7515;
+            background-color: #fff;
+            border: 1px solid #ff7515;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        :active，元素被点击时变色，但颜色在点击后消失
+
+        :focus， 元素被点击后变色，且颜色在点击后不消失
+     -->
+    <div class="form">
+        <div class="PIN-input" tabindex="1"></div>
+        <div class="line"></div>
+        <button class="PIN-btn">获取验证码</button>
+
+        <!-- 
+        由于div等元素无法接受键盘或其他用户事件，即不支持:focus伪类，可通过增加tabIndex属性使其支持:focus
+         -->
+         <div class="cancel-btn" tabindex="2">取消验证</div>
+    </div>
+
+    <script>
+        document.querySelector('.PIN-btn').addEventListener('click',function(){
+            console.log('1');
+            document.querySelector('.PIN-btn').setAttribute('class','PIN-btn disabled');
+        });
+        document.querySelector('.cancel-btn').addEventListener('click',function(){
+            document.querySelector('.PIN-btn').setAttribute('class','PIN-btn');
+        })
+        // 注意点：
+        // pointer-events 的值为 none 时，如果元素上绝对定位，那在它下一层的元素可以被选中。
+        // pointer-events: none; 只是用来禁用鼠标的事件，通过其他方式绑定的事件还是会触发的，比如键盘事件等。
+        // 如果将一个元素的子元素 pointer-events 设置成其他值（比如：auto），那么当点击子元素时，还是会通过事件冒泡的形式出发父元素的事件。
+    </script>
+</body>
+
+</html>

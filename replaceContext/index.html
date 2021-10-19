@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <style>
+        /*display:none + 伪元素 */
+        .context{
+            display: none;
+        }
+        .replace-context-page:after{
+            content: '小可爱是我';
+        }
+    </style> -->
+    <!-- <style>
+        /*visibility: hidden; + 伪元素 */
+        /*元素存在，只是不可见*/
+        .context{
+            visibility: hidden;
+        }
+        .context:after{
+            content: '小可爱是我';
+            visibility: visible;
+        }
+    </style> -->
+    <!-- <style>
+        /*position: absolute; + visibility: hidden; + 伪元素 */
+        /*position: absolute;脱离文档流*/
+        .context{
+            position: absolute;
+            visibility: hidden;
+        }
+        .context:before{
+            content: '小可爱是我';
+            visibility: visible;
+        }
+    </style> -->
+    <!-- <style>
+        /*原始文本向左重叠，正常展示替换文本*/
+        .context{
+            visibility: hidden;
+            letter-spacing: -999px;
+            word-spacing: -999px;
+        }
+        .context:after{
+            content: '小可爱是我';
+            visibility: visible;
+            word-spacing: normal;
+            letter-spacing: normal;
+        }
+    </style> -->
+    <style>
+        /*原始文本向左缩进，正常展示替换文本*/
+        .context{
+            text-indent: -999px; /*缩进*/
+            line-height: 0;
+        }
+        .context:after{
+            content: '小可爱是我';
+            text-indent: 0;
+            line-height: initial;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="replace-context-page">
+        <div class="context">我是小可爱</div>
+    </div>
+</body>
+</html>

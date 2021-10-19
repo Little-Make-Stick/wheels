@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./iconfont/iconfont.css">
+    <style>
+        :root {
+            --theme-color: #efeeee;
+            --content-bg-color: #ffffff99;
+            --content-text-color: #000;
+            --btn-bg-color: #fff;
+            --btn-content-color: #000;
+            --btn-tip-bg-color: #000;
+            --btn-tip-text-color: #fff;
+        }
+
+        a {
+            color: var(--btn-content-color);
+            text-decoration: none;
+        }
+
+        .btn-list {
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            bottom: 10px;
+            right: 15px;
+            padding: 0 10px;
+        }
+
+        .btn-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--btn-bg-color);
+            color: var(--btn-content-color);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            margin: 8px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 5px 5px 10px rgb(0 0 0 / 10%), -5px -5px 10px rgb(255 255 255);
+            z-index: 9;
+        }
+
+        .btn:hover {
+            /* box-shadow: 0px 0px 0px rgb(0 0 0 / 10%), 0px 0px 0px rgb(255 255 255 / 60%), inset 5px 5px 10px rgb(0 0 0 / 10%), inset -5px -5px 10px rgb(255 255 255); */
+            /* transition: box-shadow .2s ease-out; */
+        }
+
+        .btn-arrow {
+            transform: rotate(180deg);
+            transition: all 2s ease;
+        }
+
+        .btn i {
+            font-size: 25px;
+        }
+
+        .btn-tip {
+            position: absolute;
+            font-size: 12px;
+            color: var(--btn-tip-text-color);
+            padding: 5px;
+            align-items: center;
+            left: -30px;
+            visibility: hidden;
+            z-index: -1;
+            transition: all 0.2s ease;
+        }
+
+        .btn-tip-content {
+            background-color: var(--btn-tip-bg-color);
+            white-space: nowrap;
+            padding: 8px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+
+        .btn-tip:after {
+            position: absolute;
+            content: '';
+            border-top: 10px solid transparent;
+            border-left: 10px solid var(--btn-tip-bg-color);
+            border-bottom: 10px solid transparent;
+            top: 11px;
+        }
+
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .app {
+            background-image: url('./image/bg/2.jpg');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        .header,
+        .footer {
+            height: 200px;
+            color: var(--theme-color);
+            font-size: 45px;
+            text-align: center;
+            line-height: 200px;
+        }
+
+        .content {
+            height: 1800px;
+            background-color: var(--content-bg-color);
+            color: var(--content-text-color);
+            font-size: 45px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app">
+        <div id="back2top"></div>
+        <div class="header">
+            header
+        </div>
+        <div class="content">
+            content
+        </div>
+        <div class="footer">
+            footer
+        </div>
+        <div class="btn-list">
+            <div class="btn-list-content">
+                <div class="btn-item">
+                    <div class="btn btn-top"><i class="iconfont icon-retop"></i></div>
+                    <div class="btn-tip">
+                        <div class="btn-tip-content">回顶</div>
+                    </div>
+                </div>
+                <div class="btn-item">
+                    <div class="btn btn-theme"><i class="iconfont icon-DarkTheme"></i></div>
+                    <div class="btn-tip">
+                        <div class="btn-tip-content">明/暗</div>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-item">
+                <div class="btn btn-arrow"><i class="iconfont icon-arrow-down"></i></div>
+                <div class="btn-tip">
+                    <div class="btn-tip-content">收起</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var arrowBtn = document.querySelector('.btn-arrow');
+        var arrowBtnItem = arrowBtn.parentNode;
+        var arrowBtnTip = arrowBtnItem.children[1];
+        var btnistContent = document.querySelector('.btn-list-content');
+        arrowBtn.addEventListener('click', function () {
+            let isRotate = arrowBtn.style.transform == 'rotate(0deg)';
+            arrowBtn.style.transform = isRotate ? 'rotate(180deg)' : 'rotate(0deg)';
+            arrowBtn.style.transition = isRotate ? 'all 0.5s ease' : 'all 1.5s ease';
+            arrowBtnTip.children[0].innerHTML = isRotate ? '收起' : '展开';
+            btnistContent.style.transform = isRotate ? 'translateY(0px)' : 'translateY(120px)';
+            setTimeout(() => { btnistContent.style.display = isRotate ? 'block' : 'none'; }, 500)
+            btnistContent.style.transition = isRotate ? 'all 1s ease' : 'all 2s ease';
+
+        })
+
+        var btns = document.querySelectorAll('.btn');
+        var btnTips = document.querySelectorAll('.btn-tip');
+        for (let i = 0; i < btns.length; i++) {
+            btns[i].addEventListener('mouseenter', btnTipShow, { self: true });
+            btns[i].addEventListener('mouseleave', btnTipShow, { self: true });
+        }
+
+        function btnTipShow(e) {
+            let btnNode = e.target;
+            let btnItemNode = btnNode.parentNode;
+            let btnTip = btnItemNode.children[1];
+            if (btnTip) {
+                btnTip.style.zIndex = btnTip.style.zIndex == '0' ? '-1' : '0';
+                btnTip.style.visibility = btnTip.style.visibility == 'visible' ? 'hidden' : 'visible';
+                btnTip.style.left = btnTip.style.left == '-60px' ? '-30px' : '-60px';
+                btnTip.style.transition = btnTip.style.transition == 'all .2s ease' ? 'all .1s ease' : 'all .2s ease';
+            }
+        }
+
+    </script>
+    <script>
+        // 锚点回顶
+        document.querySelector('.btn-top').addEventListener('click', function () {
+            // scrollTop表示被隐藏在内容区域上方的像素数。
+            // document.body.scrollTop = document.documentElement.scrollTop = 0;
+            // scrollTo方法滚动当前window中显示的文档
+            // scrollTo(0,0);
+            // scrollBy滚动当前window中显示的文档，x和y指定滚动的相对量
+            // var top = document.body.scrollTop || document.documentElement.scrollTop
+            // scrollBy(0, -top);
+            // scrollIntoView滚动当前元素，进入浏览器的可见区域
+            document.querySelector('#back2top').scrollIntoView();
+        })
+    </script>
+    <script>
+        const htmlStyle = document.body.style;
+        window.onload = function () {
+            htmlStyle.setProperty('--theme', 'light');
+            console.log(htmlStyle.getPropertyValue("--theme").trim());
+        }
+        document.querySelector('.btn-theme').addEventListener('click', () => {
+
+            if (htmlStyle.getPropertyValue("--theme").trim() == 'light') {
+                htmlStyle.setProperty('--theme', 'dark');
+                htmlStyle.setProperty('--theme-color', '#101111');
+                htmlStyle.setProperty('--content-bg-color', '#00000099');
+                htmlStyle.setProperty('--content-text-color', '#fff');
+                htmlStyle.setProperty('--btn-bg-color', '#000');
+                htmlStyle.setProperty('--btn-content-color', '#fff');
+                htmlStyle.setProperty('--btn-tip-bg-color', '#fff');
+                htmlStyle.setProperty('--btn-tip-text-color', '#000');
+            } else {
+                htmlStyle.setProperty('--theme', 'light');
+                htmlStyle.setProperty('--theme-color', '#efeeee');
+                htmlStyle.setProperty('--content-bg-color', '#ffffff99');
+                htmlStyle.setProperty('--content-text-color', '#000');
+                htmlStyle.setProperty('--btn-bg-color', '#fff');
+                htmlStyle.setProperty('--btn-content-color', '#000');
+                htmlStyle.setProperty('--btn-tip-bg-color', '#000');
+                htmlStyle.setProperty('--btn-tip-text-color', '#fff');
+            }
+            console.log(htmlStyle.getPropertyValue("--theme").trim());
+        })
+
+    </script>
+</body>
+
+</html>

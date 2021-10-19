@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .animate-div{
+            background-color: lavender;
+            width: 200px;
+            height: 200px;
+            border: 1px solid lavender;
+            margin-top: 40px;
+            transition: all 2s ease;  /* 移回原位的缓冲效果 */
+        }
+        .animate-div:hover{
+            transform: translateY(-10px);  /* 上移10px */
+            transition: all 2s ease;    /* 添加缓冲效果 */
+        }
+
+        @-webkit-keyframes div2top{
+            from{
+                transform: translateY(0px);
+            }
+            to{
+                transform: translateY(-10px);
+            }
+        }
+
+        @-moz-keyframes div2top{
+            from{
+                transform: translateY(0px);
+            }
+            to{
+                transform: translateY(-10px);
+            }
+        }
+
+        @-o-keyframes div2top{
+            from{
+                transform: translateY(0px);
+            }
+            to{
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes div2top{
+            from{
+                transform: translateY(0px);
+            }
+            to{
+                transform: translateY(-10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="animate-div"></div>
+    </div>
+</body>
+</html>

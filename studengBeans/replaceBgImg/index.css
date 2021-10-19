@@ -1,0 +1,12 @@
+.content:before{
+    content: '';
+    width: 600px !important;
+    height: 720px !important;
+    background-image: url('https://img2.baidu.com/it/u=1070003001,653753576&fm=26&fmt=auto&gp=0.jpg') !important;
+    background-size: 600px 700px !important;
+    background-repeat: no-repeat !important;
+    background-position: center center !important;
+}
+.left-bg{
+    display: none;
+}

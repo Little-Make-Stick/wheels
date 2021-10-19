@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            width: 100%;
+            height: 100vh;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .app {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #efeeee;
+        }
+
+        .btn-list {
+            width: 800px;
+            height: 100%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .btn-item {
+            width: 25%;
+            margin: 10px auto;
+        }
+
+        .btn {
+            width: 90px;
+            height: 90px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+            box-shadow: 18px 18px 30px rgb(0 0 0 / 10%), -18px -18px 30px rgb(255 255 255);
+        }
+
+        .btn:hover {
+            box-shadow: 0px 0px 0px rgb(0 0 0 / 20%), 0px 0px 0px rgb(255 255 255 / 80%), inset 18px 18px 30px rgb(0 0 0 / 10%), inset -18px -18px 30px rgb(255 255 255);
+            transition: box-shadow .2s ease-out;
+        }
+
+        .btn a {}
+
+        .btn img {
+            width: 60px;
+            height: auto;
+        }
+
+        .font{
+            color: #efeeee;
+            font-size: 20px;
+            font-weight: bold;
+            text-shadow: 0px 0px 1px #000 ;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- box-shadow -->
+    <div class="app">
+        <div class="btn-list">
+            <div class="btn-item">
+                <div class="btn">
+                    <a href="http://www.baidu.com">
+                        <img src="./image/MyIndex_files/baidu.png" alt="">
+                    </a>
+                </div>
+            </div>
+            <!-- <div class="btn-item">
+                <div class="btn">
+                    <a href="http://www.baidu.com">
+                        <img src="./image/MyIndex_files/baidu.png" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="btn-item">
+                <div class="btn">
+                    <a href="http://www.baidu.com">
+                        <img src="./image/MyIndex_files/baidu.png" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="btn-item">
+                <div class="btn">
+                    <a href="http://www.baidu.com">
+                        <img src="./image/MyIndex_files/baidu.png" alt="">
+                    </a>
+                </div>
+            </div> -->
+        </div> 
+
+        <div class="font-list">
+            <div class="font-item">
+                <div class="font">Hello World!</div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
