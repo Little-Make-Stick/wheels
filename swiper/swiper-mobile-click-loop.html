@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Document</title>
+    <style>
+        html {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .customer--swiper .customer--swiper-left-btn {
+            width: 40px;
+            height: 23vh;
+            background-image: url('./image/icon_banner_left1.png');
+            background-size: 40px 40px;
+            position: absolute;
+            left: 0;
+            background-repeat: no-repeat;
+            background-position-y: center;
+        }
+
+        .customer--swiper .customer--swiper-right-btn {
+            width: 40px;
+            height: 23vh;
+            background-image: url('./image//icon_banner_right1.png');
+            background-size: 40px 40px;
+            position: absolute;
+            right: 0;
+            background-repeat: no-repeat;
+            background-position-y: center;
+        }
+
+        .customer--swiper-content {
+            width: 100vw;
+            display: flex;
+            /* touch-action: pan-y;  */
+            white-space: nowrap;
+            /* 不换行 */
+            overflow-y: hidden;
+            overflow-x: scroll;
+            /* x轴可滚动 */
+            scroll-snap-type: x mandatory;
+            /* x轴捕捉 */
+            scroll-snap-align: center;
+            /* 中心点定义为一个捕捉点 */
+
+        }
+
+        .customer--swiper-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .customer--swiper-slider {
+            /* transform:  translateX(0px); */
+            /* animation: swiper 5s ease infinite; */
+            transition: all 1s ease;
+        }
+
+        .customer--swiper-slider a {}
+
+        .customer--swiper-slider a img {
+            height: 100%;
+            width: 100vw;
+            /* position: absolute; */
+        }
+
+        @keyframes swiper {
+            0% {
+                transform: translateX(0px);
+            }
+
+            30% {
+                transform: translateX(-100vw);
+            }
+
+            40% {
+                transform: translateX(-100vw);
+            }
+
+            60% {
+                transform: translateX(-200vw);
+            }
+
+            70% {
+                transform: translateX(-200vw);
+            }
+
+            90% {
+                transform: translateX(0px);
+            }
+
+            100% {
+                transform: translateX(0px);
+            }
+        }
+
+        .customer--swiper-paginate {
+            width: 100vw;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .customer--swiper-paginate * {
+            border: 1px solid #838399;
+            padding: 5px 20px;
+            border-radius: 4px;
+            margin: 0 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- row -->
+    <div class="customer--swiper">
+        <div class="customer--swiper-left-btn"></div>
+        <div class="customer--swiper-right-btn"></div>
+        <div class="customer--swiper-content">
+            <div class="customer--swiper-slider" style="scroll-margin-left:1350px;">
+                <a href="#">
+                    <img src="./image/1.png" />
+                </a>
+            </div>
+            <div class="customer--swiper-slider" style="scroll-margin-left:2700px;">
+                <a href="#">
+                    <img src="./image/2.png" />
+                </a>
+            </div>
+            <div class="customer--swiper-slider" style="scroll-margin-left:4050px;">
+                <a href="#">
+                    <img src="./image/3.jpg" />
+                </a>
+            </div>
+            <div class="customer--swiper-slider" style="scroll-margin-left:5400px;">
+                <a href="#">
+                    <img src="./image/1.png" />
+                </a>
+            </div>
+        </div>
+    </div>
+    <script>
+        var fullWidth = window.screen.width;
+        // 自动滚动
+        window.onload = () => {
+            var current, end, middle, start, progress;
+            
+            var animationId;
+            function init() {
+                current = document.querySelector('.customer--swiper-content').scrollLeft;
+                end = current <= fullWidth * 2 ? Math.ceil((current + fullWidth) / fullWidth) * fullWidth : 0 * fullWidth;
+                middle = (end - current) / 50, start = current, progress = 0;
+            }
+            init();
+            function render() {
+                progress += 1; //修改图像的位置
+                document.querySelector('.customer--swiper-content').scrollTo(start + middle, 0);
+                start += middle;
+                //回调函数
+                if (progress < 50) {
+                    //在动画没有结束前，递归渲染
+                    animationId = window.requestAnimationFrame(render);
+                } else {
+                    // 伪装循环滚动
+                    if (start == 3 * fullWidth) document.querySelector('.customer--swiper-content').scrollTo(0, 0);
+                    setTimeout(() => {
+                        init();
+                        animationId = window.requestAnimationFrame(render);
+                    }, 1500)
+                }
+            }
+            //第一帧渲染
+            animationId = window.requestAnimationFrame(render);
+        }
+
+        // 上一页
+        function goPre() {
+            let current = document.querySelector('.customer--swiper-content').scrollLeft;
+            let x = current >= fullWidth * 2 ? Math.ceil((current - fullWidth) / fullWidth) : 3;
+            // 处理循环滚动时的特殊情况
+            if (current == 0 * fullWidth) x = 2;
+            if (current == 1 * fullWidth) x = 0;
+            document.querySelector('.customer--swiper-content').scrollTo(x * fullWidth, 0);
+        }
+
+        // 下一页
+        function goNext() {
+            let current = document.querySelector('.customer--swiper-content').scrollLeft;
+            let x = current <= fullWidth ? Math.ceil((current + fullWidth) / fullWidth) : 0;
+            console.log('goNext', x)
+            document.querySelector('.customer--swiper-content').scrollTo(x * fullWidth, 0);
+        }
+
+        document.querySelector('.customer--swiper-left-btn').addEventListener('click', goPre);
+        document.querySelector('.customer--swiper-right-btn').addEventListener('click', goNext);
+
+
+
+
+        // var startX = 0, endX = 0;
+
+
+        // document.querySelector('.swiper-slider').addEventListener("touchstart", function (e) {
+        //     e.preventDefault();
+        //     // console.log('touchstart',e);
+        //     // console.log(e.touches[0].clientX + ',' + e.touches[0].clientY);
+        //     // console.log(e.touches[0].pageX + ',' + e.touches[0].pageY);
+        //     // console.log(e.touches[0].screenX + ',' + e.touches[0].screenY);
+        //     // console.log('identifier:' + e.touches[0].identifier +',target:' + e.touches[0].target);
+
+        //     startX = e.touches[0].clientX;
+        // }, false);
+        // document.querySelector('.swiper-content').addEventListener("touchmove", function (e) {
+        //     // e.preventDefault();
+        //     // console.log('touchmove',e);
+        //     // console.log(e.touches[0].clientX + ',' + e.touches[0].clientY);
+        //     // console.log(e.touches[0].pageX + ',' + e.touches[0].pageY);
+        //     // console.log(e.touches[0].screenX + ',' + e.touches[0].screenY);
+        //     // console.log('identifier:' + e.touches[0].identifier +',target:' + e.touches[0].target);
+        // },false);
+        // document.querySelector('.swiper-content').addEventListener("touchend", function (e) {
+        //     // console.log('touchend',e)
+        //     // console.log(e.changedTouches[0].clientX + ',' + e.changedTouches[0].clientY);
+        //     // console.log(e.changedTouches[0].pageX + ',' + e.changedTouches[0].pageY);
+        //     // console.log(e.changedTouches[0].screenX + ',' + e.changedTouches[0].screenY);
+        //     // console.log('identifier:' + e.changedTouches[0].identifier +',target:' + e.changedTouches[0].target);
+
+        //     endX = e.changedTouches[0].clientX;
+
+        //     if (startX > endX) goPre()
+        //     else goNext()
+
+        //     // console.log(startX, endX)
+        // }, false);
+
+
+        /*
+  touches：表示当前跟踪的触摸操作的touch对象的数组。
+
+  targetTouches：特定于事件目标的Touch对象的数组。
+
+  changeTouches：表示自上次触摸以来发生了什么改变的Touch对象的数组。
+
+
+  每个Touch对象包含的属性如下。
+
+
+  clientX：触摸目标在视口中的x坐标。
+
+  clientY：触摸目标在视口中的y坐标。
+
+  identifier：标识触摸的唯一ID。
+
+  pageX：触摸目标在页面中的x坐标。
+
+  pageY：触摸目标在页面中的y坐标。
+
+  screenX：触摸目标在屏幕中的x坐标。
+
+  screenY：触摸目标在屏幕中的y坐标。
+
+  target：触目的DOM节点目标。
+        */
+
+    </script>
+
+</body>
+
+</html>

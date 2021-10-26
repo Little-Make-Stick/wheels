@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            width: 100vw;
+            height: 100vh;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .swiper-content {
+            width: 1352px;
+            display: flex;
+            /* touch-action: pan-y;  */
+            white-space: nowrap;
+            /* 不换行 */
+            overflow-y: hidden;
+            overflow-x: scroll;
+            /* x轴可滚动 */
+            scroll-snap-type: x mandatory;
+            /* x轴捕捉 */
+            scroll-snap-align: center;
+            /* 中心点定义为一个捕捉点 */
+
+        }
+
+        .swiper-content::-webkit-scrollbar {
+            display: none;
+        }
+
+        .swiper-slider {
+            /* transform:  translateX(0px); */
+            /* animation: swiper 5s ease infinite; */
+            transition: all 1s ease;
+        }
+
+        .swiper-slider a {}
+
+        .swiper-slider a img {
+            height: 100%;
+            /* position: absolute; */
+        }
+
+        @keyframes swiper {
+            0% {
+                transform: translateX(0px);
+            }
+
+            30% {
+                transform: translateX(-1352px);
+            }
+
+            40% {
+                transform: translateX(-1352px);
+            }
+
+            60% {
+                transform: translateX(-2704px);
+            }
+
+            70% {
+                transform: translateX(-2704px);
+            }
+
+            90% {
+                transform: translateX(0px);
+            }
+
+            100% {
+                transform: translateX(0px);
+            }
+        }
+
+        .swiper-paginate {
+            width: 1352px;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .swiper-paginate * {
+            border: 1px solid #838399;
+            padding: 5px 20px;
+            border-radius: 4px;
+            margin: 0 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- row -->
+    <div class="swiper">
+        <div class="swiper-content">
+            <div class="swiper-slider" style="scroll-margin-left:1350px;">
+                <a href="#">
+                    <img src="./image/1.png" />
+                </a>
+            </div>
+            <div class="swiper-slider" style="scroll-margin-left:2700px;">
+                <a href="#">
+                    <img src="./image/2.png" />
+                </a>
+            </div>
+            <div class="swiper-slider" style="scroll-margin-left:4050px;">
+                <a href="#">
+                    <img src="./image/3.jpg" />
+                </a>
+            </div>
+        </div>
+        <div class="swiper-paginate">
+            <div class="pre">&lt;&nbsp;Pre</div>
+            <div class="next">Next&nbsp;&gt;</div>
+        </div>
+    </div>
+    <script>
+        // 自动滚动
+        window.onload = () => {
+            var current, end, middle, start, progress;
+            function init() {
+                current = document.querySelector('.swiper-content').scrollLeft;
+                end = current + 1352 <= 2704 ? current + 1352 : 0;
+                middle = (end - current) / 100, start = current, progress = 0;
+            }
+            function render() {
+                progress += 1; //修改图像的位置
+                document.querySelector('.swiper-content').scrollTo(start + middle, 0);
+                start += middle;
+                //回调函数
+                if (progress < 100) {
+                    //在动画没有结束前，递归渲染
+                    window.requestAnimationFrame(render);
+                } else {
+                    setTimeout(() => {
+                        init();
+                        window.requestAnimationFrame(render);
+                    }, 1500)
+                }
+            }
+            init();
+            //第一帧渲染
+            window.requestAnimationFrame(render);
+        }
+        document.querySelector('.pre').addEventListener('click', goPre);
+        document.querySelector('.next').addEventListener('click', goNext);
+
+        // 上一页
+        function goPre() {
+            let current = document.querySelector('.swiper-content').scrollLeft;
+            let x = current - 1352 >= 0 ? current - 1352 : 2704;
+            document.querySelector('.swiper-content').scrollTo(x, 0);
+        }
+
+        // 下一页
+        function goNext() {
+            let current = document.querySelector('.swiper-content').scrollLeft;
+            let x = current + 1352 <= 2704 ? current + 1352 : 0;
+            document.querySelector('.swiper-content').scrollTo(x, 0);
+        }
+
+
+
+    </script>
+
+</body>
+
+</html>

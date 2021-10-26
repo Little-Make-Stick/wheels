@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html{width: 100%;height: 100%;}
+        body{margin: 0;}
+        .customer--countdown-content{
+            text-align: center;
+        }
+
+        .customer--countdown-content .customer--countdown-header{
+            font-weight: bold;
+            font-size: 20px;
+            line-height: 35px;
+        }
+
+        .customer--countdown-content .customer--countdown-body{
+            display: inline-flex;
+            padding: 10px 15px;
+            background-color: #222020;
+            color: #f9f9f9;
+        }
+
+        .customer--countdown-body .customer--countdown-model{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .customer--countdown-body .customer--countdown-number{
+            font-size: 35px;
+        }
+
+        .customer--countdown-body .customer--countdown-label{
+            font-size: 15px;
+        }
+
+        .customer--countdown-body .customer--countdown-colon{
+            margin: 0 8px;
+            font-size: 35px;
+        }
+
+        .customer--countdown-content .customer--countdown-footer{}
+    </style>
+</head>
+
+<body>
+    <div class="customer--countdown-content">
+        <div class="customer--countdown-header">
+            Hurry Up! Sale ends in
+        </div>
+        <div class="customer--countdown-body">
+            <div class="customer--countdown-hour customer--countdown-model">
+                <div class="customer--countdown-hour-number customer--countdown-number"></div>
+                <div class="customer--countdown-hour-label customer--countdown-label">Hours</div>
+            </div>
+            <div class="customer--countdown-colon">:</div>
+            <div class="customer--countdown-minute customer--countdown-model">
+                <div class="customer--countdown-minute-number customer--countdown-number"></div>
+                <div class="customer--countdown-minute-label customer--countdown-label">Minutes</div>
+            </div>
+            <div class="customer--countdown-colon">:</div>
+            <div class="customer--countdown-second customer--countdown-model">
+                <div class="customer--countdown-second-number customer--countdown-number"></div>
+                <div class="customer--countdown-second-label customer--countdown-label">Seconds</div>
+            </div>
+        </div>
+        <div class="customer--countdown-footer">
+        </div>
+    </div>
+    <script>
+        let now_date;
+        setInterval(() => {
+            now_date = new Date();
+            document.querySelector('.customer--countdown-hour-number').innerHTML = (24 - now_date.getHours()).toString().padStart(2, '0');;
+            document.querySelector('.customer--countdown-minute-number').innerHTML = (60 - now_date.getMinutes()).toString().padStart(2, '0');;
+            document.querySelector('.customer--countdown-second-number').innerHTML = (60 - now_date.getSeconds()).toString().padStart(2, '0');;
+        }, 1000);
+    </script>
+</body>
+
+</html>
