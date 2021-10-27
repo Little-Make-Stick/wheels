@@ -148,7 +148,9 @@
         </div>
     </div>
     <script>
+        // 
         var fullWidth = window.screen.width;
+        console.log(fullWidth)
         // 自动滚动
         window.onload = () => {
             var current, end, middle, start, progress;
@@ -169,8 +171,8 @@
                     //在动画没有结束前，递归渲染
                     animationId = window.requestAnimationFrame(render);
                 } else {
-                    // 伪装循环滚动
-                    if (start == 3 * fullWidth) document.querySelector('.customer--swiper-content').scrollTo(0, 0);
+                    // 伪装循环滚动，注意：这里电脑端的start会有小数位，需要去除小数位再比较
+                    if (start.toFixed(0) == 3 * fullWidth) document.querySelector('.customer--swiper-content').scrollTo(0, 0);
                     setTimeout(() => {
                         init();
                         animationId = window.requestAnimationFrame(render);
