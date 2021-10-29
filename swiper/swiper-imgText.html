@@ -1,48 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        html{
+        html {
             width: 100%;
             height: 100vh;
         }
-        body{
+
+        body {
             margin: 0;
         }
 
-        .swiper{
+        .customer--swiper-paginate .mobile-pre,
+        .customer--swiper-paginate .mobile-next {
+            display: none;
+        }
+
+        .customer--swiper-paginate {
+            width: 1080px;
+            position: relative;
+            top: -400px;
+        }
+
+        .customer--swiper-paginate .pc-pre,
+        .customer--swiper-paginate .pc-next {
+            width: 25px;
+            height: 30px;
+            background-size: 25px 30px;
+            position: absolute;
+            background-repeat: no-repeat;
+        }
+
+        .customer--swiper-paginate .pc-pre {
+
+            background-image: url('https://cdn.shopifycdn.net/s/files/1/0577/0929/7846/files/btn_l_hover1.png?v=1627282020');
+
+            left: 5px;
+
+        }
+
+        .customer--swiper-paginate .pc-next {
+            background-image: url('https://cdn.shopifycdn.net/s/files/1/0577/0929/7846/files/btn_r_hover1.png?v=1627282020');
+            right: 8px;
+        }
+
+        .customer--swiper {
             width: 1080px;
             overflow: hidden;
-            border: 1px solid #000;
+            /* border: 1px solid #000; */
             margin: 0 auto;
         }
 
-        .swiper-wrapper {
+        .customer--swiper-wrapper {
             width: 1080px;
-            /* overflow-y: hidden; */
             display: flex;
-            overflow-y: hidden;  
-            overflow-x: scroll;  
-            scroll-snap-type: x mandatory;  
-            scroll-snap-align: center;  
-            
+            overflow-y: hidden;
+            overflow-x: scroll;
+            scroll-snap-type: x mandatory;
+            scroll-snap-align: center;
+
         }
 
-        .swiper-wrapper::-webkit-scrollbar{
+        .customer--swiper-wrapper::-webkit-scrollbar {
             display: none;
         }
-        .swiper-slider{
-            animation: swiper 5s ease infinite;
+
+        .customer--swiper-slider {
+            /* animation: customer--swiper 5s ease infinite; */
             min-width: 1080px;
             display: flex;
-            /* grid-template-columns: repeat(2,1fr); */
-            /* column-gap: 10px; */
         }
-        .swiper-slider .swiper-slider-context {
+
+        .customer--swiper-slider .customer--swiper-slider-context {
             white-space: wrap;
             word-wrap: break-word;
             word-break: break-word;
@@ -50,51 +84,320 @@
             line-height: 30px;
             margin-left: 20px;
         }
-        .swiper-slider .swiper-slider-context .swiper-slider-context-title{
+
+        .customer--swiper-slider .customer--swiper-slider-context .customer--swiper-slider-context-title {
             font-size: 30px;
             line-height: 60px;
             font-weight: bold;
         }
-        .swiper-slider .swiper-slider-img{
+
+        .customer--swiper-slider .customer--swiper-slider-img {
             text-align: right;
         }
-        .swiper-slider .swiper-slider-img img{
+
+        .customer--swiper-slider .customer--swiper-slider-img img {
             height: 100vh;
         }
-        @keyframes swiper {
-            0% {transform:translateX(0px);}
-            40% {transform:translateX(-100%);}
-            50% {transform:translateX(-100%);}
-            90% {transform:translateX(0px);}
-            100% {transform:translateX(0px);}
+
+        @keyframes customer--swiper {
+            0% {
+                transform: translateX(0px);
+            }
+
+            90% {
+                transform: translateX(-100%);
+            }
+
+            100% {
+                transform: translateX(-100%);
+            }
+        }
+
+        @media screen and (max-width: 1080px) {
+            .customer--swiper {
+                width: 100vw;
+                margin: 0;
+            }
+
+            .customer--swiper-wrapper {
+                width: 100vw;
+            }
+
+            .customer--swiper-paginate {
+                width: 97VW;
+                display: flex;
+                justify-content: space-between;
+                margin: 0 20px;
+                font-size: 25px;
+                top: 0px;
+            }
+
+            .customer--swiper-paginate .mobile-pre,
+            .customer--swiper-paginate .mobile-next {
+                display: inline-block;
+                padding: 3px 10px;
+            }
+
+            .customer--swiper-paginate .pc-pre,
+            .customer--swiper-paginate .pc-next {
+                display: none;
+            }
+
+            .customer--swiper-slider {
+                min-width: 98vw;
+                animation: none;
+            }
+
+            .customer--swiper-slider .customer--swiper-slider-context {
+                font-size: 18px;
+            }
+
+            .customer--swiper-slider .customer--swiper-slider-context .customer--swiper-slider-context-title {
+                line-height: 8vh;
+            }
+
+            .customer--swiper-slider .customer--swiper-slider-img img {
+                height: 70vh;
+            }
+        }
+
+        @media screen and (max-width: 800px) {
+
+            .customer--swiper-slider {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: space-between;
+            }
+
+            .customer--swiper-slider .customer--swiper-slider-context {
+                margin: 0 auto;
+            }
+
+            .customer--swiper-slider-context-body {
+                width: 90vw;
+                max-height: 505px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+
+            .customer--swiper-slider-context-title {
+                text-align: center;
+            }
+
+            .customer--swiper-slider .customer--swiper-slider-img {
+                text-align: center;
+            }
+
+            .customer--swiper-slider .customer--swiper-slider-img img {
+                width: 90vw;
+                height: auto;
+            }
+        }
+
+        @media screen and (max-width: 500px) {
+            .customer--swiper-slider {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .customer--swiper-paginate {
+                margin: 0 auto;
+                font-size: 16px;
+            }
+
+            .customer--swiper-slider-context-title {
+                text-align: center;
+            }
+
+            .customer--swiper-slider-context-body {
+                max-height: 955px;
+                overflow: hidden;
+                width: 93vw;
+                margin: 0 auto;
+                text-overflow: ellipsis;
+            }
+
+            .customer--swiper-slider .customer--swiper-slider-img img {
+                width: 90vw;
+                height: auto;
+            }
         }
     </style>
 </head>
+
 <body>
-    <div class="swiper">
-        <div class="swiper-wrapper">
-            <div class="swiper-slider" style="scroll-margin-left:1080px;">
-                <div class="swiper-slider-context">
-                    <div class="swiper-slider-context-title">OPPRUI GROWTH LIGHT</div>
-                    <div class="swiper-slider-context-body">Since our company established in 2005, we have successfully established many multi-matrix brands with different product lines. For the OPPRUI brand, we will pay more attention to the brand concept of "quality, service, and innovation". In 2016 when we were founded, we have independent R&D teams in many different product lines as strong mid- and back-end support. The company not only has invested a lot of research and development in LED plant growth lights, but also has many star products in various product lines launched by the company, and is considered to be the most innovative and marketable star product manufacturer in the lighting industry. To produce valuable products and services and to build the "OPPRUI" brand is always our constant pursuit. A special R&D and production team of 40 people, the team undertakes the different needs of major customers from all over the world at home and abroad, and has become a leader in customized technical services. In-depth cooperation with a number of listed companies, and constantly strive to launch different innovative products every season. OPPRUI company has its own testing and experimental research and development center, with advanced production equipment and testing equipment. Based on strict quality standards and effective management mechanisms, the company has obtained CE, ROHS, FCC, ETL, DLC and other international certifications.</div>
+    <div class="customer--swiper">
+        <div class="customer--swiper-wrapper">
+            <div class="customer--swiper-slider" style="scroll-margin-left:1080px;">
+                <div class="customer--swiper-slider-context">
+                    <div class="customer--swiper-slider-context-title">OPPRUI GROWTH LIGHT</div>
+                    <div class="customer--swiper-slider-context-body">Since our company established in 2005, we have
+                        successfully
+                        established many multi-matrix brands with different product lines. For the OPPRUI brand, we will
+                        pay more attention to the brand concept of "quality, service, and innovation". In 2016 when we
+                        were founded, we have independent R&D teams in many different product lines as strong mid- and
+                        back-end support. The company not only has invested a lot of research and development in LED
+                        plant growth lights, but also has many star products in various product lines launched by the
+                        company, and is considered to be the most innovative and marketable star product manufacturer in
+                        the lighting industry. To produce valuable products and services and to build the "OPPRUI" brand
+                        is always our constant pursuit. A special R&D and production team of 40 people, the team
+                        undertakes the different needs of major customers from all over the world at home and abroad,
+                        and has become a leader in customized technical services. In-depth cooperation with a number of
+                        listed companies, and constantly strive to launch different innovative products every season.
+                        OPPRUI company has its own testing and experimental research and development center, with
+                        advanced production equipment and testing equipment. Based on strict quality standards and
+                        effective management mechanisms, the company has obtained CE, ROHS, FCC, ETL, DLC and other
+                        international certifications.</div>
                 </div>
-                <div class="swiper-slider-img">
+                <div class="customer--swiper-slider-img">
                     <img src="https://cdn.shopifycdn.net/s/files/1/0588/7698/5529/files/1._-opprui.jpg?v=1633917899" />
                 </div>
             </div>
-            <div class="swiper-slider" style="scroll-margin-left:2160px;">
-                <div class="swiper-slider-context">
-                    <div class="swiper-slider-context-title">THCCBD GROWTH LIGHT</div>
-                    <div class="swiper-slider-context-body">THCCBD Lighting Co., Ltd., established in April 2003, is a famous and excellent professional lighting company integrating production, trade, research and development and sales.
-                        The company has more than 60,000 square meters of modern production plants, advanced production equipment, strong technical force. The "THCCBD Lighting" brand mainly develops and produces home lighting, LEDs, light sources, electrical appliances and electrical products; the products have passed the national 3C certification, CE certification, and have also been awarded the "Chinese Famous and High-quality Products". The sales network spreads all over the country, with nearly 3,000 outlets, and is exported to nearly 70 countries and regions in the Middle East, Russia, Europe, America, Africa and Southeast Asia.
-                        THCCBD people adhere to the enterprise spirit of "integrity, pragmatism, and innovation". After years of professional construction, they have an excellent design team, strong product manufacturing and management capabilities, a sound quality management system (ISO9001 certified enterprise) and perfect The after-sales service system can fully meet the different needs of customers, and its popularity in the industry has continued to rise. The company has successively won the "Top Ten Powerful Home Furnishing Brands in the Lighting Industry", "The Single Product Champion of Modern Flat Low-Voltage Lamps in the Lighting Industry", "The Leading Brand of Low-Voltage Lamps in the Lighting Industry", "Lighting Brands Satisfied by Consumers", and "Top Ten "Designer recommended brand", "The most influential brand in the lighting industry", "Top ten home lighting brands in the industry", "Excellent engineering lamp manufacturer of the year", " "Annual Excellent LED Application Brand", "Most Innovative LED Home Lighting Brand", "Top Ten Best-selling Brands in Lighting and Electrical Industry", , "National High-tech Enterprise" and other honorary titles
-                        THCCBD people have always adhered to the business philosophy of "survive by quality and development by brand", and will work hard and innovate continuously on the road of future development. With first-class products and first-class service, we will cooperate with new and old customers for a win-win situation and create a better future.</div>
+            <div class="customer--swiper-slider" style="scroll-margin-left:2160px;">
+                <div class="customer--swiper-slider-context">
+                    <div class="customer--swiper-slider-context-title">THCCBD GROWTH LIGHT</div>
+                    <div class="customer--swiper-slider-context-body">THCCBD Lighting Co., Ltd., established in April
+                        2003, is a
+                        famous and excellent professional lighting company integrating production, trade, research and
+                        development and sales.
+                        The company has more than 60,000 square meters of modern production plants, advanced production
+                        equipment, strong technical force. The "THCCBD Lighting" brand mainly develops and produces home
+                        lighting, LEDs, light sources, electrical appliances and electrical products; the products have
+                        passed the national 3C certification, CE certification, and have also been awarded the "Chinese
+                        Famous and High-quality Products". The sales network spreads all over the country, with nearly
+                        3,000 outlets, and is exported to nearly 70 countries and regions in the Middle East, Russia,
+                        Europe, America, Africa and Southeast Asia.
+                        THCCBD people adhere to the enterprise spirit of "integrity, pragmatism, and innovation". After
+                        years of professional construction, they have an excellent design team, strong product
+                        manufacturing and management capabilities, a sound quality management system (ISO9001 certified
+                        enterprise) and perfect The after-sales service system can fully meet the different needs of
+                        customers, and its popularity in the industry has continued to rise. The company has
+                        successively won the "Top Ten Powerful Home Furnishing Brands in the Lighting Industry", "The
+                        Single Product Champion of Modern Flat Low-Voltage Lamps in the Lighting Industry", "The Leading
+                        Brand of Low-Voltage Lamps in the Lighting Industry", "Lighting Brands Satisfied by Consumers",
+                        and "Top Ten "Designer recommended brand", "The most influential brand in the lighting
+                        industry", "Top ten home lighting brands in the industry", "Excellent engineering lamp
+                        manufacturer of the year", " "Annual Excellent LED Application Brand", "Most Innovative LED Home
+                        Lighting Brand", "Top Ten Best-selling Brands in Lighting and Electrical Industry", , "National
+                        High-tech Enterprise" and other honorary titles
+                        THCCBD people have always adhered to the business philosophy of "survive by quality and
+                        development by brand", and will work hard and innovate continuously on the road of future
+                        development. With first-class products and first-class service, we will cooperate with new and
+                        old customers for a win-win situation and create a better future.</div>
                 </div>
-                <div class="swiper-slider-img">
+                <div class="customer--swiper-slider-img">
                     <img src="https://cdn.shopifycdn.net/s/files/1/0588/7698/5529/files/1._-thccbd.jpg?v=1633917899" />
                 </div>
             </div>
+            <div class="customer--swiper-slider" style="scroll-margin-left:3240px;">
+                <div class="customer--swiper-slider-context">
+                    <div class="customer--swiper-slider-context-title">OPPRUI GROWTH LIGHT</div>
+                    <div class="customer--swiper-slider-context-body">Since our company established in 2005, we have
+                        successfully
+                        established many multi-matrix brands with different product lines. For the OPPRUI brand, we will
+                        pay more attention to the brand concept of "quality, service, and innovation". In 2016 when we
+                        were founded, we have independent R&D teams in many different product lines as strong mid- and
+                        back-end support. The company not only has invested a lot of research and development in LED
+                        plant growth lights, but also has many star products in various product lines launched by the
+                        company, and is considered to be the most innovative and marketable star product manufacturer in
+                        the lighting industry. To produce valuable products and services and to build the "OPPRUI" brand
+                        is always our constant pursuit. A special R&D and production team of 40 people, the team
+                        undertakes the different needs of major customers from all over the world at home and abroad,
+                        and has become a leader in customized technical services. In-depth cooperation with a number of
+                        listed companies, and constantly strive to launch different innovative products every season.
+                        OPPRUI company has its own testing and experimental research and development center, with
+                        advanced production equipment and testing equipment. Based on strict quality standards and
+                        effective management mechanisms, the company has obtained CE, ROHS, FCC, ETL, DLC and other
+                        international certifications.</div>
+                </div>
+                <div class="customer--swiper-slider-img">
+                    <img src="https://cdn.shopifycdn.net/s/files/1/0588/7698/5529/files/1._-opprui.jpg?v=1633917899" />
+                </div>
+            </div>
+        </div>
+        <div class="customer--swiper-paginate">
+            <div class="customer--swiper-pre">
+                <div class="pc-pre">
+                </div>
+                <div class="mobile-pre">&lt;&nbsp;上一篇</div>
+            </div>
+            <div class="customer--swiper-next">
+                <div class="pc-next"></div>
+                <div class="mobile-next">下一篇&nbsp;&gt;</div>
+            </div>
         </div>
     </div>
+    <div class="other-content">
+        xxxxxxxxxxxxxxxxxxxx
+    </div>
+
+    <script>
+        // 
+        var swiperWidth = document.querySelector('.customer--swiper').clientWidth;
+        console.log(swiperWidth)
+        // 自动滚动
+        function loadAnimate() {
+            var current, end, middle, start, progress;
+
+            var animationId;
+            function init() {
+                current = document.querySelector('.customer--swiper-wrapper').scrollLeft;
+                end = current == swiperWidth*2 ? 0 : Math.ceil((current + swiperWidth) / swiperWidth) * swiperWidth ;
+                middle = (end - current) / 50, start = current, progress = 0;
+            }
+            init();
+            function render() {
+                progress += 1; //修改图像的位置
+                document.querySelector('.customer--swiper-wrapper').scrollTo(start + middle, 0);
+                start += middle;
+                //回调函数
+                if (progress < 50) {
+                    //在动画没有结束前，递归渲染
+                    animationId = window.requestAnimationFrame(render);
+                } else {
+                    // 伪装循环滚动，注意：这里电脑端的start会有小数位，需要去除小数位再比较
+                    if (start.toFixed(0) == swiperWidth * 2) document.querySelector('.customer--swiper-wrapper').scrollTo(0, 0);
+                    setTimeout(() => {
+                        init();
+                        animationId = window.requestAnimationFrame(render);
+                    }, 3000)
+                }
+            }
+            //第一帧渲染
+            animationId = window.requestAnimationFrame(render);
+        }
+
+        window.onload = ()=>{
+            if(window.matchMedia('(min-width:1080px)')){
+                console.log('loadAnimate')
+                loadAnimate();
+            }
+        }
+
+        // 上一页
+        function goPre() {
+            let current = document.querySelector('.customer--swiper-wrapper').scrollLeft;
+            let x = current == 0 ? 1 : Math.ceil((current - swiperWidth) / swiperWidth);
+            console.log('goPre', x)
+            document.querySelector('.customer--swiper-wrapper').scrollTo(x * swiperWidth, 0);
+        }
+
+        // 下一页
+        function goNext() {
+            let current = document.querySelector('.customer--swiper-wrapper').scrollLeft;
+            console.log('next', current)
+            let x = current == swiperWidth ? 0 : Math.ceil((current + swiperWidth) / swiperWidth);
+            console.log('goNext', x)
+            document.querySelector('.customer--swiper-wrapper').scrollTo(x * swiperWidth, 0);
+        }
+
+
+        document.querySelector('.customer--swiper-pre').addEventListener('click', goPre);
+        document.querySelector('.customer--swiper-next').addEventListener('click', goNext);
+
+    </script>
 </body>
+
 </html>
