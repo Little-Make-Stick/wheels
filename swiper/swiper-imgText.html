@@ -370,7 +370,7 @@
         }
 
         window.onload = ()=>{
-            if(window.matchMedia('(min-width:1080px)')){
+            if(window.matchMedia('(min-width:1080px)').matches){
                 console.log('loadAnimate')
                 loadAnimate();
             }
