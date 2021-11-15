@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- https://www.ruanyifeng.com/blog/2016/11/intersectionobserver_api.html -->
+    <!-- https://juejin.cn/post/7028744289890861063 -->
+    <header>
+        <h2>Intersection Observer</h2>
+    </header>
+    <div class="content">
+        <p>IntersectionObserver接口 (从属于Intersection Observer API) 提供了一种异步观察目标元素与其祖先元素或顶级文档视窗(viewport)交叉状态的方法。</p>
+        <p>祖先元素与视窗(viewport)被称为根(root)。</p>
+        <p>当一个IntersectionObserver对象被创建时，其被配置为监听根中一段给定比例的可见区域。</p>
+        <p>一旦IntersectionObserver被创建，则无法更改其配置，所以一个给定的观察者对象只能用来监听可见区域的特定变化值；然而，你可以在同一个观察者对象中配置监听多个目标元素。</p>
+        <p>var observer = new IntersectionObserver(callback[, options]);</p>
+        <ol>参数
+            <li>callback
+                <ol>当元素可见比例超过指定阈值后，会调用一个回调函数，此回调函数接受两个参数
+                    <li>entries
+                        <p>一个<a href="#IntersectionObserverEntry">IntersectionObserverEntry</a>对象的数组，每个被触发的阈值，都或多或少与指定阈值有偏差。</p>
+                    </li>
+                    <li>observer
+                        <p>被调用的IntersectionObserver实例。</p>
+                    </li>
+                </ol>
+            </li>
+            <li>options 
+                <p>一个可以用来配置observer实例的对象。如果options未指定，observer实例默认使用文档视口作为root，并且没有margin，阈值为0%</p>
+                <ol>
+                    <li>root
+                        <p>监听元素的祖先元素Element对象，其边界盒将被视作视口。目标在根的可见区域的的任何不可见部分都会被视为不可见。</p>
+                    </li>
+                    <li>rootMargin
+                        <p>一个在计算交叉值时添加至根的边界盒(bounding_box (en-US))中的一组偏移量，类型为字符串(string) ，可以有效的缩小或扩大根的判定范围从而满足计算需要。</p>
+                    </li>
+                    <li>threshold
+                        <p>规定了一个监听目标与边界盒交叉区域的比例值，可以是一个具体的数值或是一组0.0到1.0之间的数组。若指定值为0.0，则意味着监听元素即使与根有1像素交叉，此元素也会被视为可见. 若指定值为1.0</p>
+                        <p>当监听对象的任何阈值被越过时，都会生成一个通知(Notification)。</p>
+                    </li>
+                </ol>
+            </li>
+        </ol>
+        <ol>方法
+            <li>observe()
+                <p>向IntersectionObserver对象监听的目标集合添加一个元素。一个监听者有一组阈值和一个根， 但是可以监视多个目标元素，以查看这些目标元素可见区域的变化。</p>
+                <p>IntersectionObserver.observe(targetElement);</p>
+                <ol>参数
+                    <li>targetElement
+                        <p>可见性区域被监控的元素element。此元素必须是根元素的后代 (如果根元素为视窗，则该元素必须被当前文档包含)。</p>
+                    </li>
+                </ol>
+            </li>
+            <li>disconnect()
+                <p>终止对所有目标元素可见性变化的观察。</p>
+                <p>intersectionObserver.disconnect();</p>
+            </li>
+            <li>takeRecords()
+                <p>返回一个 IntersectionObserverEntry 对象数组, 每个对象的目标元素都包含每次相交的信息, 可以显式通过调用此方法或隐式地通过观察者的回调自动调用</p>
+                <p>intersectionObserverEntries = intersectionObserver.takeRecords();</p>
+            </li>
+            <li>unobserve()
+                <p>IntersectionObserver停止对一个元素的观察。</p>
+                <p>IntersectionObserver.unobserve(target);</p>
+                <ol>参数
+                    <li>target
+                        <p>要取消观察的目标，如果没有提供，方法不做任何事情，也不会抛出异常。</p>
+                    </li>
+                </ol>
+            </li>
+        </ol>
+        
+        <ol><a id="IntersectionObserverEntry">## IntersectionObserverEntry</a>
+            <li>time
+                <p>返回一个记录从 IntersectionObserver 的时间原点(time origin)到交叉被触发的时间的时间戳</p>
+            </li>
+            <li>target
+                <p>与根出现相交区域改变的元素</p>
+            </li>
+            <li>rootBounds
+                <p>返回一个 DOMRectReadOnly 用来描述交叉区域观察者(intersection observer)中的根.</p>
+            </li>
+            <li>isIntersecting
+                <p>返回一个布尔值, 如果目标元素与交叉区域观察者对象(intersection observer) 的根相交，则返回 true .如果返回 true, 则 IntersectionObserverEntry 描述了变换到交叉时的状态; 如果返回 false, 那么可以由此判断,变换是从交叉状态到非交叉状态.</p>
+            </li>
+            <li>intersectionRect
+                <p>返回一个 DOMRectReadOnly 用来描述根和目标元素的相交区域</p>
+            </li>
+            <li>boundingClientRect
+                <p>返回包含目标元素的边界信息的DOMRectReadOnly</p>
+            </li>
+            <li>intersectionRatio
+                返回intersectionRect 与 boundingClientRect 的比例值
+            </li>
+        </ol>
+    </div>
+</body>
+</html>
