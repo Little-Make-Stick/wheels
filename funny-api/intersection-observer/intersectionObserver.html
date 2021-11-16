@@ -5,10 +5,16 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>
+        ol{
+            border: 2px solid #ccc;
+            background: cornsilk;
+            padding: 20px 40px;
+            margin: 20px 0;
+        }
+    </style>
 </head>
 <body>
-    <!-- https://www.ruanyifeng.com/blog/2016/11/intersectionobserver_api.html -->
-    <!-- https://juejin.cn/post/7028744289890861063 -->
     <header>
         <h2>Intersection Observer</h2>
     </header>
@@ -91,7 +97,7 @@
                 <p>返回一个 DOMRectReadOnly 用来描述根和目标元素的相交区域</p>
             </li>
             <li>boundingClientRect
-                <p>返回包含目标元素的边界信息的DOMRectReadOnly</p>
+                <p>返回包含目标元素的边界信息的 DOMRectReadOnly </p>
             </li>
             <li>intersectionRatio
                 返回intersectionRect 与 boundingClientRect 的比例值

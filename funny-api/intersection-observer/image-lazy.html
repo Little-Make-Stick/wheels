@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .title {
+            font-size: 25px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .content {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .card {
+            width: calc(50% - 20px);
+            margin: 5px;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card-img img {
+            width: 100%;
+            height: auto;
+        }
+
+        .card-title {
+            margin: 5px 0;
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 25px;
+            max-height: 50px;
+            overflow: hidden;
+        }
+
+        .card-price {
+            display: flex;
+            align-items: center;
+            letter-spacing: -2px;
+        }
+
+        .card-price .cur-price {
+            color: crimson;
+            font-size: 22px;
+        }
+
+        .card-price .pre-price {
+            color: #ccc;
+            font-size: 16px;
+            text-decoration: line-through;
+        }
+    </style>
+</head>
+
+<body>
+    
+    <div class="title">img-lazy-load</div>
+    <div class="content">
+        <div class="card">
+            <div class="card-img">
+                <img src="./assets/img/1_300x300.jpg" alt="1">
+            </div>
+            <div class="card-title">商品卡片的标题-我尽量占据到两行，虽然没什么意义，只是为了美观</div>
+            <div class="card-price">
+                <div class="cur-price">￥99.99</div>
+                <div class="pre-price">￥199.99</div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // appendChild：追加新节点或者移动原有的节点
+        // cloneNode：克隆节点，参数如果为true则克隆子节点
+        for (let i = 0; i < 99; i++) {
+            let card = document.querySelector('.card').cloneNode(true);
+            document.querySelector('.content').appendChild(card)
+        }
+    </script>
+    <script>
+        function query(selector) {
+            return Array.from(document.querySelectorAll(selector));
+        }
+        const config = {
+            rootMargin: '0px',
+            threshold: 0
+        }
+        var observer = new IntersectionObserver((entries, self) => {
+            console.log(entries)
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    let img = entry.target
+                    console.log(img)
+                    let src = img.dataset.src
+                    if (src) {
+                        img.src = src
+                        img.removeAttribute('data-src')
+                    }
+                    // 解除观察
+                    self.unobserve(entry.target)
+                }
+            })
+        }, config);
+
+        query('.card-img img').forEach(function (item) {
+            observer.observe(item);
+        });
+    </script>
+</body>
+
+</html>

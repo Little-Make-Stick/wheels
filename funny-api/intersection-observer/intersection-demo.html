@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+        }
+
+        .header,
+        .footer {
+            background: #eee;
+            height: 20vh;
+            position: fixed;
+        }
+
+        .header {
+            top: 0;
+        }
+
+        .footer {
+            bottom: 0;
+        }
+
+        .content {
+            background: cornsilk;
+            height: 60vh;
+            overflow-y: scroll;
+            position: relative;
+            margin-top: 20vh;
+        }
+
+        .obverser-content {
+            height: 300vh;
+        }
+
+        .obverser {
+            position: relative;
+            top: 100vh;
+            height: 10vh;
+            width: 10vh;
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="contain">
+        <div class="header"></div>
+        <div class="content">
+            <div class="obverser-content">
+                <div class="obverser"></div>
+            </div>
+        </div>
+        <div class="footer"></div>
+    </div>
+    <script>
+        let config = {
+            root: document.querySelector('.obverser-contain'),
+            // rootMargin: 0 ,
+            // threshold: [0.2, 0.4, 0.6, 0.8, 1]
+        }
+        // entries
+        // [IntersectionObserverEntry]
+        // 0: IntersectionObserverEntry
+        // boundingClientRect: DOMRectReadOnly { x: 0, y: 446.59375, width: 65, height: 65, top: 446.59375, … }
+        // intersectionRatio: 1
+        // intersectionRect: DOMRectReadOnly { x: 0, y: 446.59375, width: 65, height: 65, top: 446.59375, … }
+        // isIntersecting: true
+        // isVisible: false
+        // rootBounds: DOMRectReadOnly { x: 0, y: 0, width: 280, height: 653, top: 0, … }
+        // target: div.obverser
+        // time: 3965.7999999523163
+        // [[Prototype]]: IntersectionObserverEntry
+        // length: 1
+        var observer = new IntersectionObserver((entries, self) => {
+            console.log(entries)
+        }, config);
+        observer.observe(document.querySelector('.obverser'))
+    </script>
+</body>
+
+</html>

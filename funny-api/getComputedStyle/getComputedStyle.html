@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        ol{
+            padding: 20px 40px;
+            margin: 20px ;
+            border: 2px solid #ccc;
+            background-color: cornsilk;
+        }
+        .tip{
+            color: green;
+            font-style: italic;
+        }
+        .strong{
+            font-weight: 600;
+            color: red;
+        }
+        .code{
+            background-color: #000;
+            color: #fff;
+            padding: 10px 30px;
+            line-height: 30px;
+            display: inline-block;
+            margin: 20px ;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Window.getComputedStyle()</h2>
+    </header>
+    <div class="content">
+        <p>Window.getComputedStyle()方法返回一个对象，该对象在应用活动样式表并解析这些值可能包含的任何基本计算后报告元素的所有CSS属性的值。 </p>
+        <p>私有的CSS属性值可以通过对象提供的API或通过简单地使用CSS属性名称进行索引来访问。</p>
+        <p>let style = window.getComputedStyle(element, [pseudoElt]);</p>
+        <ol>参数
+            <li>element
+                <p>用于获取计算样式的Element。</p>
+            </li>
+            <li>pseudoElt
+                <p>指定一个要匹配的伪元素的字符串（或null）。</p>
+            </li>
+        </ol>
+        <div class="tip">从getComputedStyle返回的对象是只读的，可以用于检查元素的样式（包括由一个&lt;style&gt;元素或一个外部样式表设置的那些样式）。</div>
+        <div class="tip">在许多在线的演示代码中，getComputedStyle是通过 document.defaultView 对象来调用的。大部分情况下，这是不需要的，因为可以直接通过window对象调用。</div>
+        <div class="strong">但有一种情况，你必需要使用 defaultView,  那是在firefox3.6上访问子框架内的样式 。</div>
+        <div class="code">
+            // 从伪元素拉取样式信息<br/>
+            let h3Style = getComputedStyle(h3, '::after');<br/>
+            let h3Style = getComputedStyle(h3, null);<br/>
+        </div>
+        <script>
+            let olStyle = window.getComputedStyle(document.querySelector('ol'),null);
+            console.log(olStyle)
+        </script>
+    </div>
+</body>
+</html>
