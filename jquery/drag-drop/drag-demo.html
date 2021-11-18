@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../plugins/jquery-ui-1.13.0.custom/jquery-ui.min.css">
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <script src="../plugins/jquery-ui-1.13.0.custom/jquery-ui.min.js"></script>
+    <title>Document</title>
+    <style>
+        * {
+            font-size: 12px;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+
+        .contain {
+            display: flex;
+            padding: 10px 0;
+        }
+
+        .drag-options {
+            /* background-color:lightpink; */
+            /* color: white; */
+            padding: 0 8%;
+        }
+
+        .options-tag {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .options-table {
+            background-color: #fff;
+            width: 100%;
+            margin: 15px 5px;
+            padding: 10px;
+            color: #808080;
+        }
+
+        .options-list {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .option {
+            display: inline-block;
+            list-style: none;
+            padding: 5px 8px;
+            margin: 5px;
+            border: 2px solid #303030;
+        }
+
+        .drag-contain {
+            width: 65%;
+        }
+
+        .drop-contain {
+            /* background-color:lightsteelblue; */
+            width: 35%;
+        }
+
+        .drop-boxes {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 10px;
+        }
+
+        .add-box-btn {}
+
+        .drop-box {
+            margin: 10px 0;
+            padding: 10px 5px;
+            border: 3px solid #ccc;
+            background-color: linen;
+            border-radius: 10px;
+            display: flex;
+        }
+
+        .drop-box .box-title {
+            /* width: 100px; */
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .drop-box .box-content {
+            background-color: #fff;
+            width: 250px;
+            height: 200px;
+            overflow-y: scroll;
+            border: 1px solid #808080;
+        }
+        .add-box-dialog .category-name{
+            line-height: 70px;
+        }
+
+        .ui-dialog{
+            padding: 0;
+            width: 400px;
+        }
+
+        .ui-dialog-titlebar{
+            border-radius: 0;
+        }
+
+        .add-box-dialog .category-name .label,.add-box-dialog .category-us-name .label{
+            width: 90px;
+            display: inline-block;
+        }
+
+        .add-box-dialog .category-name input,.add-box-dialog .category-us-name input{
+            padding: 8px 10px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="contain">
+        <div class="drop-contain">
+            <button class="add-box-btn">新增box</button>
+            <div class="drop-boxes">
+                <div class="sales-box drop-box">
+                    <div class="box-title">销售</div>
+                    <div class="box-content"></div>
+                </div>
+                <div class="logistics-box drop-box">
+                    <div class="box-title">物流</div>
+                    <div class="box-content"></div>
+                </div>
+                <div class="other-box drop-box">
+                    <div class="box-title">其他</div>
+                    <div class="box-content"></div>
+                </div>
+            </div>
+        </div>
+        <div class="drag-contain">
+            <div class="drag-options">
+                <div class="options-tag basic-tag">基础数据
+                </div>
+                <div class="options-tag store-tag">库存管理
+                </div>
+                <div class="options-tag sale-tag">销售管理
+                </div>
+                <div class="options-tag ad-tag">广告费
+                </div>
+                <div class="options-tag tool-tag">工具
+                </div>
+                <div class="options-tag system-tag">系统设置
+                </div>
+            </div>
+
+        </div>
+        <div class="add-box-dialog" title="新增分类">
+            <div class="category-name">
+                <div class="label">分类名称</div>
+                <input class="categoryName" type="text" placeholder="请输入分类名称">
+            </div>
+            <div class="category-us-name">
+                <div class="label">英文分类名称</div>
+                <input class="categoryUSName" type="text" placeholder="请输入英文分类名称">
+            </div>
+        </div>
+    </div>
+    <script>
+        // data
+        var basic = [
+            {
+                us: 'products',
+                name: '商品数据',
+                list: ['序号', 'SKU', 'SKU名称', '型号', '国家', '品类-中', '品类-大', '商品品牌', '商品单位', '品牌商', '颜色', '开发员', '更新时间', '创建时间', '状态', '操作']
+            },
+            {
+                us: 'brands',
+                name: '品牌数据',
+                list: ['序号', '商品品牌', '品牌归属公司', '品牌归属国家', '不可售国家', '更新时间', '操作']
+            },
+            {
+                us: 'shops',
+                name: '店铺数据',
+                list: ['序号', '网店类型', '网店账号', '店铺', '国家', '账号等级', '账号归属国家', '账号归属公司', '品牌商', '风险等级', '累计被警告次数', '最后一次警告信息', '判断原因', '警告日期', '更新时间', '操作']
+            },
+            {
+                us: 'groups',
+                name: '组织数据',
+                list: ['序号', '店铺', '国家', '商品编码', 'Asin', '渠道SKU', 'FNSKU', '销售小组', '销售人员', '销售负责人', '创建时间', '更新时间', '更新人', '财务成本数据', '操作']
+            },
+            {
+                us: 'financial-costs',
+                name: '财务成本数据',
+                list: ['序号', '商品编码', '等级', '产品定位', '发货方式', '首销日期', '生命周期', '采购成本', '头程成本', '自发货运费', '更新日期', '更新人', '操作']
+            }
+        ]
+
+        var store = [
+            {
+                us: 'fba',
+                name: 'FBA库存表',
+                list: ['账号', '账号等级', '国家', '欧洲', '销售人员', '销售负责人', 'SKU', '渠道SKU', 'FNSKU', 'Asin', '计划补货', '备注', '产品名称', '型号', '售价', 'FBA可售-库存', 'FBA可售-金额', 'FBA预留-库存', 'FBA预留-金额', '二程在途-库存', '二程在途-金额', '空运在途-库存', '空运在途-金额', '海运在途-库存', '海运在途-金额', '铁路在途-库存', '铁路在途-金额', '总在途-库存', '总在途-金额', '总库存-库存', '总库存-金额', '近七天日均销量', '安全天数', '2021-10-19 ~ 2021-11-17日销量', '操作']
+            }
+        ]
+
+        var sale = [
+            {
+                us: 'sale-analy',
+                name: '销售分析',
+                list: ['序号', 'SKU', 'SKU动销情况', '产品名称', '销售小组', '型号', '国家', 'FBA可售-库存', 'FBA可售-金额', 'FBA预留-库存', 'FBA预留-金额', '海外仓-库存', '海外仓-金额', '二程在途-库存', '二程在途-金额', '空运在途-库存', '空运在途-金额', '海运在途-库存', '海运在途-金额', '铁路在途-库存', '铁路在途-金额', '国内待发运-库存', '国内待发运-金额', '采购在途-库存', '采购在途-金额', '全节点-库存', '全节点-金额', 'FBA-近7天日均销量', 'FBA-近30天销量', 'FBA-FBA可售天数', 'FBA-调拨提货预警', '存货-存货周转天数', '存货-调拨提货预警', '全节点-全节点可售天数', '全节点-预警/控制下单', '下单', '提货', '物控执行措施', '2021-11月目标销量', '实际销量-2021.11', '实际销量-2021.10', '实际销量-2021.09', '2021.11月销售目标达成率', '2021.11.04~2021.11.17日销量', '运输方式', '未税单价', 'MPQ', '分类', '供应商', '品牌', '颜色', '首销日期', '累计销售天数', 'SKU入仓时间', '库存天数', '操作']
+            },
+            {
+                // '基本信息', '产品销量及定价', '成本与费用', '盈利表现-原价', '盈利表现-活动价', '盈利表现-大促价', '盈利表现-综合',
+                us: 'sale-budget',
+                name: '销售预算',
+                list: ['基本信息-参考型号', '基本信息-销售小组', '基本信息-销售员', '基本信息-开发员', '基本信息-渠道', '基本信息-尾程发货', '基本信息-国家', '基本信息-等级', '基本信息-品牌', '基本信息-大品类', '基本信息-中品类', '基本信息-小品类', '基本信息-型号', '基本信息-产品名称', '基本信息-颜色', '基本信息-产品定位', '基本信息-头程发货', '基本信息-首销日期', '基本信息-时间', '基本信息-生命周期', '基本信息-审核状态', '基本信息-版本号', '产品销量及定价-原价', '产品销量及定价-活动价', '产品销量及定价-大促价', '产品销量及定价-原价折扣/券%', '产品销量及定价-活动价折扣/券%', '产品销量及定价-大促价折扣/券%', '产品销量及定价-原价-成交价', '产品销量及定价-活动价-成交价', '产品销量及定价-大促价-成交价', '产品销量及定价-原价比例%', '产品销量及定价-活动价比例%', '产品销量及定价-大促价比例%', '产品销量及定价-目标销量', '产品销量及定价-目标BSR排名', '产品销量及定价-汇率', '成本与费用-不含税采购价', '成本与费用-头程单价', '成本与费用-FBA/自发货运费单价', '成本与费用-退货率%', '成本与费用-手续费率%', '成本与费用-站内广告费', '成本与费用-品牌费率', '成本与费用-站外广告费', '成本与费用-VAT占比', '成本与费用-固定费用', '成本与费用-管理费用', '盈利表现-原价-销售金额', '盈利表现-原价-综合占比', '盈利表现-原价-退货率', '盈利表现-原价-广告占比', '盈利表现-原价-毛利率', '盈利表现-原价-净利率', '盈利表现-活动价-销售金额', '盈利表现-活动价-综合占比', '盈利表现-活动价-退货率', '盈利表现-活动价-毛利率', '盈利表现-活动价-净利率', '盈利表现-大促价-销售金额', '盈利表现-大促价-综合占比', '盈利表现-大促价-退货率', '盈利表现-大促价-毛利率', '盈利表现-大促价-净利率', '盈利表现-综合-销售金额', '盈利表现-综合-综合占比', '盈利表现-综合-退货率', '盈利表现-综合-广告占比', '盈利表现-综合-毛利率', '盈利表现-综合-毛利额', '盈利表现-综合-净利率', '盈利表现-综合-净利额', '操作']
+            },
+            {
+                us: 'new-produtc-plan',
+                name: '新品计划跟进',
+                list: ['序号', '时间', '型号', '维度', '销售小组', '销售员', '开发员', '渠道', '尾程发货', '站点', '等级', '品牌', '大品类', '中品类', '小品类', '颜色', '产品定位', '运输方式', '首销日期', '生命周期', '汇率', '销量', '退货量', '加权成交价', '销售金额', '退款金额', '采购成本', '头程成本', '手续费', '运费', '站内广告费', '品牌费率', '站外广告费', '仓租', '税金', '固定费用', '管理费用', '毛利', '毛利率', '净利', '净利率', '退款率', '采购占比', '头程占比', '手续费占比', '运费占比', '站内广告费占比', '品牌费率占比', '站外广告费占比', '仓租占比', '税金占比', '固定成本占比', '管理成本占比', '综合占比']
+            },
+            {
+                us: 'gross-profit',
+                name: '毛利汇总',
+                list: ['销量', '销售金额', '退款金额', '采购成本', '头程成本', '手续费', 'FBA运费', '仓租', '线上广告费', '线下广告费', '毛利']
+            },
+            {
+                us: 'gross-profit-sale-detail',
+                name: '毛利汇总-销售明细',
+                list: ['序号', '明细', '供应商', '品类', '型号', '颜色', '销售员', '国家', '首销日期', '销量', '订单金额', '销售折扣', '销售金额', '退款金额', '亚马逊物料赔偿', '手续费', 'FBA运费', '仓租分摊', 'CPC', '秒杀推广费', '优惠券兑换', '线上广告费合计', '测评费', '其他广告', '采购成本', '头程成本', '毛利', '毛利率', '退款率', '采购占比', '头程占比', '运费占比', '手续费占比', '仓租占比', '线上广告占比', 'ACOS', '广告收入占比', '线下广告占比', '测评数量', '测评数量占比', '毛利目标', '毛利率目标', '毛利率差异', '广告占比目标', '广告占比差异', '应回款金额', '综合占比', '综合占比目标']
+            },
+        ]
+
+        var ad = [
+            {
+                us: 'evaluation',
+                name: '测评明细',
+                list: ['序号', '站点', 'ASIN', '品牌商', '店铺', '型号', 'SKU', '报销人', '核销日期', '订单日期', '单号', '下单价格', '手续费比例', '手续费', '本金+手续费(本币)', '本金+手续费($)', '佣金RMB', '人民币汇率', 'PAYPAL账号', '总计', '月份', '操作']
+            },
+            {
+                us: 'credit-card-ad',
+                name: '信用卡广告费',
+                list: ['序号', '店铺', '国家', '发票开具日期', '发票号', '收费金额', '广告费金额', '汇率', '付款方式', '到期日期', '状态', '操作']
+            },
+            {
+                us: 'other-ad',
+                name: '其他广告费',
+                list: ['序号', '型号', '颜色', '供应商', '国家', '交单日期', '单据编码', '摘要', '报销费用', '金额', '币种', '申请人', '归属月份', '月份', '操作']
+            },
+            {
+                us: 'CPC-ad',
+                name: 'CPC广告汇总',
+                list: ['CPC广告费', '广告费', '广告收入', '总收入', 'ACOS', '广告收入占比', '投入产出比(RoAS)', 'CPC占比', '展示量', '点击量', '点击率(CTR)', '平均CPC成本', '广告销量', '广告转化率', 'CPC目标占比', '超额广告费']
+            },
+            {
+                us: 'CPC-ad-detail',
+                name: 'CPC广告汇总-广告明细',
+                list: ['序号', '供应商', '品类', '型号', '颜色', '销售员', '国家', '广告费-商品推广', '广告费-品牌推广视频', '广告费-展示型推广', '广告费-品牌推广', '广告费-合计', '广告收入-商品推广', '广告收入-品牌推广视频', '广告收入-展示型推广', '广告收入-品牌推广', '广告收入-合计', '展示量-商品推广', '展示量-品牌推广视频', '展示量-展示型推广', '展示量-品牌推广', '展示量-合计', '点击量-商品推广', '点击量-品牌推广视频', '点击量-展示型推广', '点击量-品牌推广', '点击量-合计', '点击率(CTR)-商品推广', '点击率(CTR)-品牌推广视频', '点击率(CTR)-展示型推广', '点击率(CTR)-品牌推广', '点击率(CTR)-合计', '广告销量-商品推广', '广告销量-品牌推广视频', '广告销量-展示型推广', '广告销量-品牌推广', '广告销量-合计', '广告转化率-商品推广', '广告转化率-品牌推广视频', '广告转化率-展示型推广', '广告转化率-品牌推广', '广告转化率-合计',]
+            }
+        ]
+
+        var tool = [
+            {
+                us: 'warn',
+                name: '预警配置设置',
+                list: ['序号', '字段名', '数值区间', '预警提示', '更新时间', '操作']
+            },
+            {
+                us: 'dataSync',
+                name: '数据同步',
+                list: ['任务名', '说明', '进度', '最近操作人', '最近操作时间', '操作']
+            },
+            {
+                us: 'download',
+                name: '下载中心',
+                list: ['表名', '操作']
+            },
+        ]
+
+        var system = [
+            {
+                us: 'rate',
+                name: '汇率管理',
+                list: ['序号', '国家', '货币名称', '货币代码', '汇率', '更新时间', '操作']
+            },
+            {
+                us: 'EU-VAT',
+                name: '欧洲VAT税率',
+                list: ['序号', '站点', '国家', '税率', 'VAT占比', '操作']
+            },
+            {
+                us: 'user',
+                name: '用户管理',
+                list: ['序号', '账号', '昵称', '邮箱', '角色', '岗位', '销售小组', '状态', '创建时间', '最近登录时间', '操作']
+            },
+            {
+                us: 'role',
+                name: '角色管理',
+                list: ['序号', '角色名', '模块', '状态', '操作']
+            },
+        ]
+
+        initList('basic', basic);
+        initList('store', store);
+        initList('sale', sale);
+        initList('ad', ad);
+        initList('tool', tool);
+        initList('system', system);
+        // init-List
+        function initList(str, list) {
+            let parentNode = document.querySelector('.' + str + '-tag');
+            for (let i = 0; i < list.length; i++) {
+                newTable(list[i], parentNode);
+                newList(list[i], document.querySelector('.' + str + '-tag .' + list[i].us + '-table'))
+                for (let item of list[i].list) {
+                    newLi(item, document.querySelector('.' + str + '-tag .options-table .' + list[i].us + '-list'))
+                }
+            }
+        }
+        function newTable(item, parent) {
+            let newNode = document.createElement('div');
+            newNode.setAttribute('class', 'options-table ' + item.us + '-table');
+            newNode.innerText = item.name;
+            parent.appendChild(newNode);
+        }
+        function newList(item, parent) {
+            let newNode = document.createElement('ul');
+            newNode.setAttribute('class', 'options-list ' + item.us + '-list');
+            // newNode.innerText = item;
+            parent.appendChild(newNode);
+        }
+        function newLi(item, parent) {
+            let newNode = document.createElement('li');
+            newNode.setAttribute('class', 'option');
+            newNode.innerText = item;
+            parent.appendChild(newNode);
+        }
+    </script>
+    <script>
+        $(function () {
+            // $(".drag-options").accordion();
+            // $(".options-table").accordion();
+            $(".drag-options .option").draggable({
+                // 当拖拽时，draggable 助手（helper）要追加到哪一个元素。
+                appendTo: ".drop-box",
+                // 元素将被克隆，且克隆将被拖拽
+                // helper: "clone",
+                // 还原仅在 draggable 未放置在 droppable 上时发生
+                revert: "invalid",
+                // 允许 draggable 放置在指定的 sortable 上。注意：helper 选项必须设置为 "clone"
+                // connectToSortable: "#cart",
+                drag: function (event, ui) {
+                    // console.log(event.target)
+                    // let el = event.target;
+                    // el.style.display="none";
+                },
+            });
+            $(".drop-box .box-content").droppable({
+                // 当一个可接受的 draggable 被拖拽时，class 将被添加到 droppable。
+                // activeClass: "ui-state-default",
+                // 当一个可接受 draggable 被覆盖在 droppable 上时，class 将被添加到 droppable。
+                // hoverClass: "ui-state-hover",
+                // 控制哪个可拖拽（draggable）元素可被 droppable 接受。
+                accept: ":not(.ui-sortable-helper)",
+                drop: function (event, ui) {
+                    let dragUI = ui.draggable[0];
+                    dragUI.style.display = 'none';
+                    $("<li class='option'></li>").text(ui.draggable.text()).appendTo(this);
+                }
+            }).sortable({
+                items: "li:not(.placeholder)",
+                sort: function () {
+                    // 获取由 droppable 与 sortable 交互而加入的条目
+                    // 使用 connectWithSortable 可以解决这个问题，但不允许您自定义 active/hoverClass 选项
+                    // $(this).removeClass("ui-state-default");
+                }
+            });
+
+        });
+    </script>
+    <script>
+
+        $('.add-box-dialog').dialog({
+            autoOpen: false,
+            modal: true,
+            buttons: {
+                "确定": function () {
+                    let newParent = document.createElement('div');
+                    let className = document.querySelector('.categoryUSName').value;
+                    newParent.setAttribute('class', className + '-box drop-box');
+
+
+                    let newTitle = document.createElement('div');
+                    newTitle.setAttribute('class', 'box-title');
+                    let nodeText = document.querySelector('.categoryName').value;
+                    newTitle.innerText = nodeText;
+
+                    let newContent = document.createElement('div');
+                    newContent.setAttribute('class', 'box-content');
+
+                    $(newContent).droppable({
+                        accept: ":not(.ui-sortable-helper)",
+                        drop: function (event, ui) {
+                            let dragUI = ui.draggable[0];
+                            dragUI.style.display = 'none';
+                            $("<li class='option'></li>").text(ui.draggable.text()).appendTo(this);
+                        }
+                    }).sortable({
+                        items: "li:not(.placeholder)",
+                    });
+
+                    newParent.appendChild(newTitle);
+                    newParent.appendChild(newContent);
+                    document.querySelector('.drop-boxes').appendChild(newParent);
+                    $(this).dialog("close");
+                },
+                "取消": function () {
+                    $(this).dialog("close");
+                }
+            }
+        })
+        $(".add-box-btn").button().click(function () {
+            $(".add-box-dialog").dialog("open");
+        });
+    </script>
+</body>
+
+</html>
