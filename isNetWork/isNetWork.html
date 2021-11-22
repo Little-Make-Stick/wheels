@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        .bg {
+            width: 100vw;
+            height: 100vh;
+            background-size: auto 100%;
+            background: #ececec;
+            background-position: top center;
+            background-repeat: no-repeat;
+            /* background-image: url(./assets/image/55.jpg); */
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="bg">
+
+    </div>
+    <script>
+        // document.querySelector('.bg').setAttribute('style','background-image: url(./assets/image/55.jpg);');
+        // document.querySelector('.bg').style.backgroundImage = "url(./assets/image/55.jpg)";
+
+
+        // **navigator**，页面加载时触发
+        // if (navigator.onLine) {
+        //     alert("正常上网");
+        // } else {
+        //     // document.querySelector('.bg').style.backgroundImage = "url(./assets/image/55.jpg)";
+        //     alert('无网络');
+        // }
+
+        // bind,网络改变时触发
+        // $(window).bind('online', function () {
+        //     alert("正常上网");
+        // });
+        // $(window).bind('offline', function () {
+        //     alert('无网络');
+        // });
+        // window.addEventListener('online',function () {
+        //     alert("正常上网");
+        // })
+        
+        // window.addEventListener('offline',function () {
+        //     alert('无网络');
+        // })
+
+        // 加载一个图片判断网络状态
+
+    </script>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
+    <img id="img-test" style="display:none;" onerror="getImgError()" />
+    <script>
+        function getImgError() {
+            alert('无网络');
+        }
+        $().ready(function () {
+            var imgPath = "https://www.baidu.com/img/bd_logo1.png";
+            var timeStamp = Date.parse(new Date());
+            $("#img-test").attr("src", imgPath + "?timestamp=" + timeStamp);
+            alert("正常上网");
+        });
+    </script>
+
+</body>
+
+</html>
