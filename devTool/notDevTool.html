@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+</head>
+
+<body>
+    <p></p>
+    <script>
+        $(document).keydown(function () {
+            return key(arguments[0])
+        });
+        function key(e) {
+            //f12
+            var keynum;
+            if (window.event) {
+                keynum = e.keyCode;
+            } else if (e.which) {
+                keynum = e.which;
+            }
+            if (keynum == 123) {
+                alert('F12')
+                return false;
+            }
+
+            //ctrl+shift+i
+            if (event.shiftKey && event.ctrlKey && keynum == 17) {
+                alert('ctrl+shift+i')
+
+                // window.event.returnValue = false;
+
+                // window.event.preventDefault();
+
+                return false;
+            }
+        }
+
+        document.oncontextmenu = Click;// 右击
+
+        function Click() {
+            alert('右键')
+            window.event.returnValue = false;
+        }
+
+        // 只有打开控制台，才会执行 console 方法，而使用console打印Date，会调用Date的toString方法，我们对toString方法做了改写。
+        // 如果直接注入代码，如console = 1，以上代码将失效。例如浏览器地址栏直接输入:javascript:console=1;
+
+
+        const im = new Image();
+        Object.defineProperty(im, 'id', {
+            get: function () {
+                // 在这里放入你的代码，比如我这里会让他跳到百度
+                console.log('Console is opened');
+                window.location.href = 'http://www.baidu.com';
+            },
+        });
+        console.log(im); //谷歌最新版失效
+
+        let num = 0; //谷歌最新版有效
+        const devtools = new Date();
+        devtools.toString = function () {
+            num++;
+            if (num > 1) {
+                // 在这里放入你的代码，比如我这里会让他跳到百度
+                console.log('Console is opened');
+                window.location.href = "http://www.baidu.com";
+                return Date.prototype.toString.call(devtools); // 返回devtools结果（这一步不是必须的）
+            }
+        };
+        console.log(devtools);
+    </script>
+</body>
+
+</html>
